@@ -64,3 +64,6 @@ class Customer(models.Model):
         self.customer_id = get_random_string(length=6)
 
 
+
+
+
