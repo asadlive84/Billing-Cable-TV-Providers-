@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+
+{% block title %}{{ customer.name }}{% endblock %}
+
+
+
+{% block content %}
+
+
+
+
+<div class="container">
+  <h2>Customer Profile</h2>
+    <div class="card" style="width:400px">
+{#      <img class="card-img-top" src="img_avatar1.png" alt="Card image">#}
+      <div class="card-body">
+        <h4 class="card-title">Name: <b>{{ customer.name }}</b>  Gender: {{ customer.get_gender_display }} </h4>
+        <p class="card-text">Customer ID: <i>{{ customer.customer_id }}</i></p>
+        <p class="card-text">Phone: {{ customer.phone_number }}</p>
+        <p class="card-text">Address: {{ customer.word_union }}</p>
+        <p class="card-text">Package: {{ customer.package_name }}</p>
+        <p class="card-text">
+            Status:
+            {% if customer.customer_status == True %}
+            Active
+            {% elif customer.customer_status == False %}
+             False
+            {% endif %}
+        </p>
+        <a href="#" class="btn btn-primary">See Profile</a>
+      </div>
+    </div>
+
+</div>
+
+
+
+
+{% endblock %}

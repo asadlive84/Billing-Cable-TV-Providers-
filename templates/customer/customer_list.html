@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Customer List{% endblock %}
+
+
+
+{% block content %}
+
+
+
+
+<div class="container">
+  <h2>Customer Table</h2>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Phone</th>
+        <th>Package</th>
+        <th>Address</th>
+        <th>Due</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for customer in customers %}
+      <tr>
+        <td><a href="{{ customer.get_absolute_url }}">{{ customer.name }}</a></td>
+        <td>
+            {% if customer.customer_status == True %}
+            Active
+            {% elif customer.customer_status == False %}
+             False
+            {% endif %}
+        </td>
+        <td>{{ customer.phone_number }}</td>
+        <td>{{ customer.package_name }}</td>
+        <td>{{ customer.word_union }}</td>
+        <td>{{ customer.total_due }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+
+
+
+{% endblock %}

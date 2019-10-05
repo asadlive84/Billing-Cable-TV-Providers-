@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.urls import reverse
 from django.utils.crypto import get_random_string
 
 GENDER_CHOICES = (
@@ -59,12 +60,17 @@ class Customer(models.Model):
     customer_status = models.BooleanField('Customer Active Status', default=True)
     slug = models.SlugField(unique=True, blank=True, null=True)
     gender = models.CharField('Gender', choices=GENDER_CHOICES, default='M', max_length=1)
-    phone_number = models.IntegerField(db_index=True)
+    phone_number = models.IntegerField(db_index=True, unique=True)
+    email_field = models.EmailField(blank=True, null=True)
     alter_phone_number = models.IntegerField(null=True, blank=True)
     address = models.TextField(null=True, blank=True)
+    total_due = models.FloatField(default=0)
     word_union = models.ForeignKey(Word, on_delete=models.SET_NULL, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ('-created_at',)
 
     def __str__(self):
         return self.name
@@ -73,8 +79,11 @@ class Customer(models.Model):
     def customer_info(self):
         return f"{self.name} {self.phone_number}"
 
+    def get_absolute_url(self):
+        return reverse('customer:customer_details', args=[str(self.slug)])
+
     def save(self, *args, **kwargs):
-        self.slug = f"{self.name}-{self.customer_id.lower()}"
+        self.slug = f"{self.name.lower()}-{self.customer_id.lower()}"
         print(self.customer_id)
         print(self.slug)
         super().save(*args, **kwargs)
