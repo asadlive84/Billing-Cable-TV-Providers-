@@ -1,3 +1,12 @@
 from django.contrib import admin
 
-# Register your models here.
+from customer.models import Customer, Package, Word, Union
+from bill.models import Bill, Invoice
+
+
+admin.site.register(Customer)
+admin.site.register(Bill)
+admin.site.register(Invoice)
+admin.site.register(Package)
+admin.site.register(Word)
+admin.site.register(Union)
