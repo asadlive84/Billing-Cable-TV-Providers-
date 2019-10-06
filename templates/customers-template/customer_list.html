@@ -1,0 +1,82 @@
+{% extends 'customers-template/base.html' %}
+
+{% block title %}
+Customer List
+{% endblock %}
+
+
+{% block content %}
+
+
+
+        <div class="breadcrumbs">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Customer List</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="#">Dashboard</a></li>
+
+                            <li class="active">Customer List</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content mt-3">
+            <div class="animated fadeIn">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <strong class="card-title">Customer Table</strong>
+                            </div>
+                            <div class="card-body">
+                                <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Phone</th>
+                                            <th>Due</th>
+                                            <th>Union/Word</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for customer in customers %}
+                                        <tr>
+                                            <td><a href="{{ customer.get_absolute_url }}">{{ customer.name }}</a></td>
+                                            <td>{{ customer.phone_number }}</td>
+                                            <td>{{ customer.bill.due_bill }}</td>
+                                            <td>{{ customer.word_union }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div><!-- .animated -->
+        </div><!-- .content -->
+
+
+    </div><!-- /#right-panel -->
+
+{% endblock %}
+
+
+
+
+</body>
+
+</html>

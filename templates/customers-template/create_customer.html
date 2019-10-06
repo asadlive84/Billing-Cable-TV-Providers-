@@ -1,0 +1,122 @@
+{% extends 'customers-template/base.html' %}
+
+{% block title %}
+Create Customer
+{% endblock %}
+
+{% block content %}
+
+
+
+        <div class="breadcrumbs">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Create Customer</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="#">Dashboard</a></li>
+
+                            <li class="active">create customer</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content mt-3">
+            <div class="animated fadeIn">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="card">
+
+                            <div class="card-body">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <strong>Customer Create Form</strong>
+                                    </div>
+                                    <div class="card-body card-block">
+                                        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                            {% csrf_token %}
+
+                                            <div class="row form-group">
+                                                <div class="col col-md-3"><label for="{{ forms.name.id_for_label }}" class="form-control-label">*Customer Name</label></div>
+                                                <div class="col-12 col-md-9">{{ forms.name }}<small class="form-text text-muted">This is a help text</small></div>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col col-md-3"><label for="{{ forms.package_name.id_for_label }}" class=" form-control-label">*Package</label></div>
+                                                <div class="col-12 col-md-9">{{ forms.package_name }}<small class="help-block form-text">Please enter your email</small></div>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col col-md-3"><label for="{{ forms.customer_status.id_for_label }}" class=" form-control-label">*Status</label></div>
+                                                <div class="col-12 col-md-9">{{ forms.customer_status }}<small class="help-block form-text">Please enter a complex password</small></div>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col col-md-3"><label for="{{ forms.gender.id_for_label }}" class=" form-control-label">*Gender</label></div>
+                                                <div class="col-12 col-md-9">{{ forms.gender }}</div>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col col-md-3"><label for="{{ forms.phone_number.id_for_label }}" class=" form-control-label">*Mobile Number</label></div>
+                                                <div class="col-12 col-md-9">{{ forms.phone_number }}</div>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col col-md-3"><label for="{{ forms.email_field.id_for_label }}" class=" form-control-label">Email</label></div>
+                                                <div class="col-12 col-md-9">{{ forms.email_field }}</div>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col col-md-3"><label for="{{ forms.alter_phone_number.id_for_label }}" class=" form-control-label">Alternative Phone Number</label></div>
+                                                <div class="col-12 col-md-9">{{ forms.alter_phone_number }}</div>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col col-md-3"><label for="{{ forms.address.id_for_label }}" class=" form-control-label">Address</label></div>
+                                                <div class="col-12 col-md-9">{{ forms.address }}</div>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col col-md-3"><label for="{{ forms.word_union.id_for_label }}" class=" form-control-label">*Union/Word</label></div>
+                                                <div class="col-12 col-md-9">{{ forms.word_union }}</div>
+                                            </div>
+
+
+{#                                                <div class="row form-group">#}
+{#                                                    <div class="col col-md-3"><label for="file-input" class=" form-control-label">File input</label></div>#}
+{#                                                    <div class="col-12 col-md-9"><input type="file" id="file-input" name="file-input" class="form-control-file"></div>#}
+{#                                                </div>#}
+
+                                             <button type="submit" class="btn btn-primary btn-sm">
+                                            <i class="fa fa-dot-circle-o"></i> Create Customer
+                                            </button>
+                                        </form>
+                                    </div>
+                                    <div class="card-footer">
+
+                                        <button type="reset" class="btn btn-danger btn-sm">
+                                            <i class="fa fa-ban"></i> Reset
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div><!-- .animated -->
+        </div><!-- .content -->
+
+
+    </div><!-- /#right-panel -->
+
+{% endblock %}
+
+
+
+
+</body>
+
+</html>

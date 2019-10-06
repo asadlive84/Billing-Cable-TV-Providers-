@@ -1,0 +1,163 @@
+{% extends 'customers-template/base.html' %}
+{% block title %}
+{{ customer.name }} Profile
+{% endblock %}
+{% block content %}
+
+
+
+        <div class="breadcrumbs">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Customer: <b>{{ customer.name }}</b> ID: <i>{{ customer.customer_id }}</i> </h1>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="#">Dashboard</a></li>
+
+                            <li class="active">{{ customer.name }}</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content mt-3">
+            <div class="animated fadeIn">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="card">
+
+                            <div class="card-body">
+                                <aside class="profile-nav alt">
+                            <section class="card">
+                                <div class="card-header user-header alt bg-dark">
+                                    <div class="media">
+                                        <a href="#">
+                                            <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt="" src="images/admin.jpg">
+                                        </a>
+                                        <div class="media-body">
+                                            <h2 class="text-light display-6">{{ customer.name }} <span class="badge badge-primary pull-right">{{ customer.bill.due_bill }} TK</span></h2>
+                                            <p>{{ customer.word_union }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <ul class="list-group list-group-flush">
+                                    <p class="text-sm-center display-10">Membership created {{ customer.created_at }} | created by: {{ customer.created_user.username }}  {{ customer.created_user.name }}</p>
+
+                                    <li class="list-group-item">
+
+                                        <a href="#">
+                                            <i class="fa fa-envelope-o"></i>
+                                            Total Balance  <span class="badge badge-primary pull-right">{{ customer.bill.balance }} TK</span>
+                                        </a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#">
+                                            <i class="fa fa-envelope-o"></i>
+                                            Connection Status  <span class="badge badge-primary pull-right">{{ customer.get_customer_status_display }}</span>
+                                        </a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#">
+                                            <i class="fa fa-tasks"></i>
+                                            Package Name <span class="badge badge-danger pull-right">{{ customer.package_name }}</span>
+                                        </a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#">
+                                            <i class="fa fa-tasks"></i>
+                                            Full Address <span class="badge badge-danger pull-right">{{ customer.address }}</span>
+                                        </a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#">
+                                            <i class="fa fa-bell-o"></i>
+                                            Due <span class="badge badge-success pull-right">{{ customer.total_due }} TK</span>
+                                        </a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#">
+                                            <i class="fa fa-comments-o"></i>
+                                            Billing Start Date <span class="badge badge-warning pull-right r-activity">{{ customer.bill.billing_start_date }}</span>
+                                        </a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#">
+                                            <i class="fa fa-comments-o"></i>
+                                            Total Days <span class="badge badge-warning pull-right r-activity">{{ customer.bill.total_day }} days</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="list-group-item">
+                                        <a href="#"> <i class="fa fa-comments-o"></i>
+                                            Total Bill <span class="badge badge-warning pull-right r-activity">{{ customer.bill.total_bill }} TK</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="list-group-item">
+                                        <a href="#">
+                                            <i class="fa fa-comments-o"></i>
+                                            Billing Start Date <span class="badge badge-warning pull-right r-activity">{{ customer.bill.billing_start_date }}</span>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            </section>
+                        </aside>
+                            </div>
+                             <div class="card-body">
+                                <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Invoice ID</th>
+                                            <th>Person</th>
+                                            <th>Type</th>
+                                            <th>Amount</th>
+                                            <th>Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for invoice in customer.bill.invoice_set.all %}
+                                        <tr>
+                                            <td><a href="">{{ invoice.invoice_id }}</a></td>
+                                            <td>{{ invoice.invoice_creator }}</td>
+                                            <td>{{ invoice.get_invoice_type_display }}</td>
+                                            <td>{{ invoice.invoice_amount }} - {{ invoice.custom_bill_date|date:'N y' }}</td>
+                                            <td>
+                                                {{ invoice.created_at|date:"d b,y" }}
+                                                {{ invoice.created_at|time:"h:i A" }}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div><!-- .animated -->
+        </div><!-- .content -->
+
+
+    </div><!-- /#right-panel -->
+
+{% endblock %}
+
+
+
+
+</body>
+
+</html>

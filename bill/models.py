@@ -19,8 +19,9 @@ INVOICE_TYPE = [
 
 class Bill(models.Model):
     bill_id = models.CharField('Bill ID',
+                               unique=True,
                                max_length=6,
-                               default=get_random_string(length=6, allowed_chars="ACY23456PKL#"))
+                               default=get_random_string(length=6, allowed_chars="ACY23456PKLW"))
     bill_creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
     customer = models.OneToOneField(Customer, on_delete=models.SET_NULL, null=True, db_index=True)
     billing_start_date = models.DateField()
@@ -41,6 +42,7 @@ class Bill(models.Model):
 
 class Invoice(models.Model):
     invoice_id = models.CharField('Invoice ID',
+                                  unique=True,
                                   default=get_random_string(length=8, allowed_chars="FD23456PKL"),
                                   max_length=8,
                                   db_index=True)
@@ -70,13 +72,16 @@ def bill_balance_saved(sender, instance, created=False, **kwargs):
         Amount saved Bill instance objects
         '''
         instance.bill.balance = instance.bill.balance + instance.invoice_amount
+
         '''
         total day count and saved for Customer(Bill instance objects)
         '''
         instance.bill.total_day = day.days
+        instance.bill.total_bill = instance.bill.customer.package_name.per_day_amount * instance.bill.total_day
         instance.bill.save()
     if not created:
         instance.bill.total_day = day.days
+        instance.bill.total_bill = instance.bill.customer.package_name.per_day_amount * instance.bill.total_day
         instance.bill.save()
 
 
@@ -92,4 +97,7 @@ def adjustment_saved(sender, instance, created=True, **kwargs):
         '''
         instance.bill.balance = instance.bill.balance - instance.adjustment
         instance.bill.total_day = day.days
+        instance.bill.total_bill = instance.bill.customer.package_name.per_day_amount * instance.bill.total_day
         instance.bill.save()
+
+

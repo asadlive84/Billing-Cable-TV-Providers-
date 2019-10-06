@@ -19,7 +19,27 @@
         <p class="card-text">
            Status: {{ customer.get_customer_status_display }}
         </p>
-        <a href="#" class="btn btn-primary">See Profile</a>
+          <p>Bill ID {{ customer.bill.bill_id }}</p>
+          <p>Balance {{ customer.bill.balance }} TK</p>
+           <p>Billing Start Date {{ customer.bill.billing_start_date }}</p>
+          <p>Total Day {{ customer.bill.total_day }} Days</p>
+
+          <p>Total Bill {{ customer.bill.total_day }} Days * {{ customer.package_name.per_day_amount }} TK = {{ customer.bill.total_bill }} TK</p>
+          <p>Due Bill Status{{ customer.bill.due_bill_status }}</p>
+
+        <ul>
+             {% for invoice in customer.bill.invoice_set.all %}
+            <li>
+
+            {{ invoice.get_invoice_type_display }} - {{ invoice.invoice_amount }}
+                {{ invoice.custom_bill_date }} {{ invoice.created_at }}
+
+            </li>
+            {% endfor %}
+        </ul>
+
+
+
       </div>
     </div>
 

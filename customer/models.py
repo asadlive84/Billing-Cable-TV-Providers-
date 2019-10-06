@@ -1,5 +1,7 @@
 from django.db import models
 from django.conf import settings
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.urls import reverse
 from django.utils.crypto import get_random_string
 
@@ -20,11 +22,17 @@ CUSTOMER_STATUS = [
 class Package(models.Model):
     package_name = models.CharField('Package', max_length=100, default='')
     package_bill = models.FloatField('Per Month Amount', default=0)
+    month_cycle = models.IntegerField('Month Cycle', default=30)
+    per_day_amount = models.FloatField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"{self.package_name} - {self.package_bill}"
+
+    def save(self, *args, **kwargs):
+        self.per_day_amount = "{:.2f}".format(self.package_bill / self.month_cycle)
+        return super(Package, self).save(*args, **kwargs)
 
 
 class Union(models.Model):
@@ -61,8 +69,12 @@ class Customer(models.Model):
     """
         Customer Data Table
     """
-    customer_id = models.CharField('Customer ID', max_length=100, default=str(
-        get_random_string(length=6, allowed_chars='ABCDEFGHKMNPQRSTZX123456789')))
+    customer_id = models.CharField('Customer ID',
+                                   unique=True,
+                                   max_length=100,
+                                   default=str(get_random_string(length=6, allowed_chars='FDA1234567890'))
+                                   )
+    created_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
     name = models.CharField('Customer Name', max_length=200)
     package_name = models.ForeignKey(Package, on_delete=models.SET_NULL, null=True)
     customer_status = models.CharField('Customer Status', max_length=2, choices=CUSTOMER_STATUS, default=ACTIVE)
@@ -91,7 +103,6 @@ class Customer(models.Model):
         return reverse('customer:customer_details', args=[str(self.slug)])
 
     def save(self, *args, **kwargs):
-        self.slug = f"{self.name.lower()}-{self.customer_id.lower()}"
-        print(self.customer_id)
-        print(self.slug)
+        str_white_space_removed=self.name.replace(" ", "").lower()
+        self.slug = f"{str_white_space_removed}-{self.customer_id.lower()}"
         super().save(*args, **kwargs)
