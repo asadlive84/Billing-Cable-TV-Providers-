@@ -24,11 +24,11 @@ class Bill(models.Model):
     bill_creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
     customer = models.OneToOneField(Customer, on_delete=models.SET_NULL, null=True, db_index=True)
     billing_start_date = models.DateField()
-    total_balance = models.FloatField(blank=True, null=True, default=0)
-    total_bill = models.FloatField(blank=True, null=True)
-    total_due_bill = models.BooleanField(default=True)
-    total_due_bill = models.FloatField(blank=True, null=True)
-
+    balance = models.FloatField(default=0)
+    total_bill = models.FloatField('Total Bill', default=0)
+    due_bill_status = models.BooleanField('Due Status', default=True)
+    due_bill = models.FloatField('Due Bill', default=0)
+    total_day = models.IntegerField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -51,14 +51,11 @@ class Invoice(models.Model):
     # invoice type
     invoice_type = models.CharField(choices=INVOICE_TYPE, max_length=1, default='2')
     # given amount
-    invoice_amount = models.FloatField('Current Bill', default=0)
+    invoice_amount = models.FloatField('Invoice Amount', default=0)
     adjustment = models.FloatField(blank=True, null=True, default=0)
     custom_bill_date = models.DateField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
 
     class Meta:
         ordering = ('-created_at',)
@@ -66,13 +63,33 @@ class Invoice(models.Model):
 
 @receiver(post_save, sender=Invoice)
 def bill_balance_saved(sender, instance, created=False, **kwargs):
+    get_bill_start_date = instance.bill.billing_start_date
+    day = get_bill_start_date.today() - get_bill_start_date
     if created:
-        instance.bill.balance = instance.bill.balance + instance.current_bill
+        '''
+        Amount saved Bill instance objects
+        '''
+        instance.bill.balance = instance.bill.balance + instance.invoice_amount
+        '''
+        total day count and saved for Customer(Bill instance objects)
+        '''
+        instance.bill.total_day = day.days
+        instance.bill.save()
+    if not created:
+        instance.bill.total_day = day.days
         instance.bill.save()
 
 
 @receiver(post_save, sender=Invoice)
 def adjustment_saved(sender, instance, created=True, **kwargs):
+    get_bill_start_date = instance.bill.billing_start_date
+    day = get_bill_start_date.today() - get_bill_start_date
     if not created and instance.adjustment > 0:
+        '''
+        Amount adjustment saved Bill instance objects
+        total day count and saved for Customer (Bill instance objects)
+        
+        '''
         instance.bill.balance = instance.bill.balance - instance.adjustment
+        instance.bill.total_day = day.days
         instance.bill.save()

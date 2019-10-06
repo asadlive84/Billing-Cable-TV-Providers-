@@ -2,25 +2,35 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ec526eb6-eb14-4760-9b00-2d1e6d72e376" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/bill/migrations/0018_auto_20191006_1310.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bill/migrations/0019_auto_20191006_1310.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bill/migrations/0020_auto_20191006_1313.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bill/migrations/0021_auto_20191006_1317.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bill/migrations/0022_auto_20191006_1318.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bill/migrations/0023_auto_20191006_1318.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bill/migrations/0024_auto_20191006_1327.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/migrations/0034_auto_20191006_1310.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/migrations/0035_auto_20191006_1310.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/migrations/0036_auto_20191006_1313.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/migrations/0037_auto_20191006_1317.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/migrations/0038_auto_20191006_1318.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/migrations/0039_auto_20191006_1318.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/migrations/0040_auto_20191006_1327.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0026_auto_20191006_1339.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0027_auto_20191006_1342.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0028_auto_20191006_1343.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0029_auto_20191006_1348.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0030_auto_20191006_1349.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0031_auto_20191006_1350.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0032_auto_20191006_1352.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0033_auto_20191006_1354.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0034_auto_20191006_1400.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0035_auto_20191006_1406.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0036_auto_20191006_1418.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0037_auto_20191006_1418.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0038_auto_20191006_1426.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0042_auto_20191006_1339.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0043_auto_20191006_1342.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0044_auto_20191006_1343.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0045_auto_20191006_1348.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0046_auto_20191006_1349.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0047_auto_20191006_1350.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0048_auto_20191006_1352.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0049_auto_20191006_1354.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0050_auto_20191006_1400.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0051_auto_20191006_1406.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0052_auto_20191006_1418.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0053_auto_20191006_1418.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0054_auto_20191006_1426.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bill/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/bill/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/customer/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/customer/customer_details.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/customer/customer_details.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/customer/customer_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/customer/customer_list.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -159,7 +169,7 @@
       <workItem from="1570294142359" duration="2672000" />
       <workItem from="1570302100548" duration="16189000" />
       <workItem from="1570337330338" duration="272000" />
-      <workItem from="1570341885811" duration="3400000" />
+      <workItem from="1570341885811" duration="6587000" />
     </task>
     <servers />
   </component>

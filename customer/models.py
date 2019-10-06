@@ -19,7 +19,7 @@ CUSTOMER_STATUS = [
 
 class Package(models.Model):
     package_name = models.CharField('Package', max_length=100, default='')
-    package_bill = models.FloatField(default=0)
+    package_bill = models.FloatField('Per Month Amount', default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
