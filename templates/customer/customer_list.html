@@ -16,6 +16,7 @@
   <table class="table table-hover">
     <thead>
       <tr>
+        <th>SL</th>
         <th>Name</th>
         <th>Status</th>
         <th>Phone</th>
@@ -27,13 +28,12 @@
     <tbody>
     {% for customer in customers %}
       <tr>
+      <td>
+          {{ forloop.counter }}
+      </td>
         <td><a href="{{ customer.get_absolute_url }}">{{ customer.name }}</a></td>
         <td>
-            {% if customer.customer_status == True %}
-            Active
-            {% elif customer.customer_status == False %}
-             False
-            {% endif %}
+            {{ customer.get_customer_status_display }}
         </td>
         <td>{{ customer.phone_number }}</td>
         <td>{{ customer.package_name }}</td>

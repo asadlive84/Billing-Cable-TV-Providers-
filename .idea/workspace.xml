@@ -2,43 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ec526eb6-eb14-4760-9b00-2d1e6d72e376" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/bill/migrations/0004_auto_20191006_0250.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bill/migrations/0005_auto_20191006_0321.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bill/migrations/0006_auto_20191006_0323.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bill/migrations/0007_auto_20191006_0324.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bill/migrations/0008_auto_20191006_0330.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bill/migrations/0009_auto_20191006_0344.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bill/migrations/0010_auto_20191006_0345.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bill/migrations/0011_auto_20191006_0348.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bill/migrations/0012_auto_20191006_0402.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bill/migrations/0013_auto_20191006_0413.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bill/migrations/0014_auto_20191006_0414.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bill/migrations/0015_auto_20191006_0422.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bill/migrations/0016_auto_20191006_0428.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bill/migrations/0017_auto_20191006_0506.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/migrations/0020_auto_20191006_0250.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/migrations/0021_auto_20191006_0321.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/migrations/0022_auto_20191006_0323.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/migrations/0023_auto_20191006_0324.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/migrations/0024_auto_20191006_0330.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/migrations/0025_auto_20191006_0344.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/migrations/0026_auto_20191006_0345.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/migrations/0027_auto_20191006_0348.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/migrations/0028_auto_20191006_0402.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/migrations/0029_auto_20191006_0413.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/migrations/0030_auto_20191006_0414.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/migrations/0031_auto_20191006_0422.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/migrations/0032_auto_20191006_0428.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/migrations/0033_auto_20191006_0506.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/customer/customer_details.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/customer/customer_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0018_auto_20191006_1310.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0019_auto_20191006_1310.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0020_auto_20191006_1313.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0021_auto_20191006_1317.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0022_auto_20191006_1318.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0023_auto_20191006_1318.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0024_auto_20191006_1327.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0034_auto_20191006_1310.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0035_auto_20191006_1310.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0036_auto_20191006_1313.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0037_auto_20191006_1317.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0038_auto_20191006_1318.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0039_auto_20191006_1318.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0040_auto_20191006_1327.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DishBilling/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/DishBilling/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bill/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/bill/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/customer/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/customer/customer_details.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/customer/customer_details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/customer/customer_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/customer/customer_list.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -113,6 +95,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -174,7 +157,9 @@
       <updated>1570280855989</updated>
       <workItem from="1570280874299" duration="5617000" />
       <workItem from="1570294142359" duration="2672000" />
-      <workItem from="1570302100548" duration="15888000" />
+      <workItem from="1570302100548" duration="16189000" />
+      <workItem from="1570337330338" duration="272000" />
+      <workItem from="1570341885811" duration="3400000" />
     </task>
     <servers />
   </component>

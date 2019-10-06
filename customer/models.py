@@ -3,10 +3,18 @@ from django.conf import settings
 from django.urls import reverse
 from django.utils.crypto import get_random_string
 
-GENDER_CHOICES = (
+GENDER_CHOICES = [
     ('M', 'Male'),
     ('F', 'Female'),
-)
+]
+
+ACTIVE = '1'
+INACTIVE = '0'
+
+CUSTOMER_STATUS = [
+    (INACTIVE, 'Inactive'),
+    (ACTIVE, 'Active'),
+]
 
 
 class Package(models.Model):
@@ -57,7 +65,7 @@ class Customer(models.Model):
         get_random_string(length=6, allowed_chars='ABCDEFGHKMNPQRSTZX123456789')))
     name = models.CharField('Customer Name', max_length=200)
     package_name = models.ForeignKey(Package, on_delete=models.SET_NULL, null=True)
-    customer_status = models.BooleanField('Customer Active Status', default=True)
+    customer_status = models.CharField('Customer Status', max_length=2, choices=CUSTOMER_STATUS, default=ACTIVE)
     slug = models.SlugField(unique=True, blank=True, null=True)
     gender = models.CharField('Gender', choices=GENDER_CHOICES, default='M', max_length=1)
     phone_number = models.IntegerField(db_index=True, unique=True)

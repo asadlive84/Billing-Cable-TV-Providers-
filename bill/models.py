@@ -6,6 +6,16 @@ from django.conf import settings
 from django.dispatch import receiver
 from django.utils import timezone
 
+DUE_BILL = '0'
+NEW_CONNECTION = '1'
+CURRENT_BILL = '2'
+
+INVOICE_TYPE = [
+    (DUE_BILL, 'Due Bill'),
+    (NEW_CONNECTION, 'New Connection'),
+    (CURRENT_BILL, 'Current Bill'),
+]
+
 
 class Bill(models.Model):
     bill_id = models.CharField('Bill ID',
@@ -14,9 +24,9 @@ class Bill(models.Model):
     bill_creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
     customer = models.OneToOneField(Customer, on_delete=models.SET_NULL, null=True, db_index=True)
     billing_start_date = models.DateField()
-    balance = models.FloatField(blank=True, null=True, default=0)
+    total_balance = models.FloatField(blank=True, null=True, default=0)
     total_bill = models.FloatField(blank=True, null=True)
-    due_bill = models.BooleanField(default=True)
+    total_due_bill = models.BooleanField(default=True)
     total_due_bill = models.FloatField(blank=True, null=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
@@ -34,17 +44,20 @@ class Invoice(models.Model):
                                   default=get_random_string(length=8, allowed_chars="FD23456PKL"),
                                   max_length=8,
                                   db_index=True)
+    # invoice creator as sales person or bill collect
     invoice_creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
+    # Bill person
     bill = models.ForeignKey(Bill, on_delete=models.SET_NULL, null=True)
+    # invoice type
+    invoice_type = models.CharField(choices=INVOICE_TYPE, max_length=1, default='2')
+    # given amount
+    invoice_amount = models.FloatField('Current Bill', default=0)
     adjustment = models.FloatField(blank=True, null=True, default=0)
-    is_paid = models.BooleanField(default=False)
-    current_bill = models.FloatField('Current Bill', default=0)
     custom_bill_date = models.DateField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def save(self, *args, **kwargs):
-        
         super().save(*args, **kwargs)
 
     class Meta:

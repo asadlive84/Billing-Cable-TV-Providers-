@@ -6,11 +6,7 @@
 
 
 {% block content %}
-
-
-
-
-<div class="container">
+    <div class="container">
   <h2>Customer Profile</h2>
     <div class="card" style="width:400px">
 {#      <img class="card-img-top" src="img_avatar1.png" alt="Card image">#}
@@ -21,12 +17,7 @@
         <p class="card-text">Address: {{ customer.word_union }}</p>
         <p class="card-text">Package: {{ customer.package_name }}</p>
         <p class="card-text">
-            Status:
-            {% if customer.customer_status == True %}
-            Active
-            {% elif customer.customer_status == False %}
-             False
-            {% endif %}
+           Status: {{ customer.get_customer_status_display }}
         </p>
         <a href="#" class="btn btn-primary">See Profile</a>
       </div>
