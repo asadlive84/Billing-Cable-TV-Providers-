@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}  ">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
-
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
 </head>
 
 <body>
@@ -269,6 +269,20 @@
         <!-- Header-->
 
 
+
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert  alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+
+        <span class="badge badge-pill badge-{{ message.tags }}"> {{ message.tags }} </span> {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+
+    </div>
+     {% endfor %}
+    {% endif %}
+
         {% block content %}
         
         {% endblock %}
@@ -312,6 +326,8 @@
     <script src="{% static 'vendors/datatables.net-buttons/js/buttons.print.min.js' %} "></script>
     <script src="{% static 'vendors/datatables.net-buttons/js/buttons.colVis.min.js' %} "></script>
     <script src="{% static 'assets/js/init-scripts/data-table/datatables-init.js' %} "></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
     <script>
         (function($) {
             "use strict";
@@ -329,7 +345,32 @@
                 normalizeFunction: 'polynomial'
             });
         })(jQuery);
+
+
     </script>
+
+    <script>
+ var picker = new Pikaday({
+    field: document.getElementById('id_custom_bill_date'),
+    format: 'D-M-YYYY',
+    toString(date, format) {
+        // you should do formatting based on the passed format,
+        // but we will just return 'D/M/YYYY' for simplicity
+        const day = date.getDate();
+        const month = date.getMonth() + 1;
+        const year = date.getFullYear();
+        return `${day}-${month}-${year}`;
+    },
+    parse(dateString, format) {
+        // dateString is the result of `toString` method
+        const parts = dateString.split('/');
+        const day = parseInt(parts[0], 10);
+        const month = parseInt(parts[1], 10) - 1;
+        const year = parseInt(parts[2], 10);
+        return new Date(year, month, day);
+    }
+});
+</script>
 
 </body>
 

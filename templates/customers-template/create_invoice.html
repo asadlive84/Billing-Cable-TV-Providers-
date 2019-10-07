@@ -1,0 +1,105 @@
+{% extends 'customers-template/base.html' %}
+
+{% block title %}
+Create Customer
+{% endblock %}
+
+{% block content %}
+
+
+
+        <div class="breadcrumbs">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Invoice for <a href="{{ customer.get_absolute_url }}">{{ customer.name }}</a></h1>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li class="active"> ID <b>{{ customer.customer_id }}</b> Mobile <b>{{ customer.phone_number }}</b></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content mt-3">
+            <div class="animated fadeIn">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="card">
+
+                            <div class="card-body">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <strong>Invoice Create Form</strong>
+                                    </div>
+                                    <div class="card-body card-block">
+                                        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                            {% csrf_token %}
+
+                                            <div class="row form-group">
+                                                <div class="col col-md-3"><label for="{{ forms.invoice_type.id_for_label }}" class="form-control-label">*Invoice Type</label></div>
+                                                <div class="col-12 col-md-9">{{ form.invoice_type }}<small class="form-text text-muted">Select Invoice Type</small></div>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col col-md-3"><label for="{{ forms.invoice_amount.id_for_label }}" class=" form-control-label">*Amount</label></div>
+                                                <div class="col-12 col-md-9">{{ form.invoice_amount }}<small class="help-block form-text">Give correct amount</small></div>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col col-md-3"><label for="{{ form.adjustment.id_for_label }}" class=" form-control-label">Adjustment</label></div>
+                                                <div class="col-12 col-md-9">{{ form.adjustment }}<small class="help-block form-text">if you'd mistake!</small></div>
+                                            </div>
+
+
+
+                                            <div class="row form-group">
+                                                <div class="col col-md-3"><label for="{{ form.custom_bill_date.id_for_label }}" class=" form-control-label">Custom Date</label></div>
+                                                <div class="col-12 col-md-9">{{ form.custom_bill_date }}<small class="help-block form-text">Select date</small></div>
+                                            </div>
+
+
+{#                                                <div class="row form-group">#}
+{#                                                    <div class="col col-md-3"><label for="file-input" class=" form-control-label">File input</label></div>#}
+{#                                                    <div class="col-12 col-md-9"><input type="file" id="file-input" name="file-input" class="form-control-file"></div>#}
+{#                                                </div>#}
+
+                                             <button type="submit" class="btn btn-primary btn-sm">
+                                            <i class="fa fa-dot-circle-o"></i> Create Invoice Now
+                                            </button>
+                                        </form>
+                                    </div>
+                                    <div class="card-footer">
+
+                                        <button type="reset" class="btn btn-danger btn-sm">
+                                            <i class="fa fa-ban"></i> Reset
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div><!-- .animated -->
+        </div><!-- .content -->
+
+
+    </div><!-- /#right-panel -->
+
+{% endblock %}
+
+
+
+
+</body>
+
+</html>

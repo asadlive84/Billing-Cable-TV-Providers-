@@ -10,7 +10,7 @@
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>Customer: <b><a href="{% url 'customer:customer_details_edit' customer.slug %}">Edit</a>{{ customer.name }}</b> ID: <i>{{ customer.customer_id }}</i> </h1>
+                        <h1>Customer: <b>{{ customer.name }}</b> ID: <i>{{ customer.customer_id }}</i> </h1>
 
                     </div>
                 </div>
@@ -19,7 +19,7 @@
                 <div class="page-header float-right">
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
-                            <li><a href="{% url 'customer:customer_list' %}">Customer List</a></li>
+                            <li><a href="#">Dashboard</a></li>
 
                             <li class="active">{{ customer.name }}</li>
                         </ol>
@@ -114,11 +114,6 @@
 
                             </section>
                         </aside>
-                            </div>
-                        <div class="card-header">
-
-                                <strong class="card-title">All Invoices</strong>
-                                <a href="{% url 'customer:create_invoices' customer.customer_id%}">Create Invoice</a>
                             </div>
                              <div class="card-body">
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">

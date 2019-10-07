@@ -59,6 +59,9 @@ class Invoice(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return f"{self.bill.customer.name} {self.invoice_amount} {self.invoice_creator}"
+
     class Meta:
         ordering = ('-created_at',)
 
