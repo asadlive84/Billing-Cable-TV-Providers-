@@ -12,7 +12,7 @@ from customer.forms import \
     CreateInvoiceForm, \
     CreatePackageForm, \
     CreateUnionForm, \
-    CreateWordForm,\
+    CreateWordForm, \
     CreateBillForm
 
 
@@ -67,10 +67,8 @@ def create_invoices(request, customer_id):
         form = CreateInvoiceForm(request.POST, request.FILES)
         custom_bill_date = request.POST.get('custom_bill_date')
 
-        py_convert_date = datetime.strptime(custom_bill_date, "%d-%m-%Y")
-        print(py_convert_date.date())
-
         if form.is_valid():
+            py_convert_date = datetime.strptime(custom_bill_date, "%d/%m/%Y")
             data = form.save(commit=False)
             data.bill = bill
             data.invoice_creator = request.user

@@ -1,4 +1,5 @@
 {% extends 'customers-template/base.html' %}
+{% load static %}
 {% block title %}
 {{ customer.name }} Profile
 {% endblock %}
@@ -41,7 +42,7 @@
                                 <div class="card-header user-header alt bg-dark">
                                     <div class="media">
                                         <a href="#">
-                                            <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt="" src="images/admin.jpg">
+                                            <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt="" src="{% static 'images/admin.jpg' %} ">
                                         </a>
                                         <div class="media-body">
                                             <h2 class="text-light display-6">{{ customer.name }} <span class="badge badge-primary pull-right">{{ customer.bill.due_bill }} TK</span></h2>

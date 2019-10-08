@@ -51,7 +51,7 @@ class Invoice(models.Model):
     # Bill person
     bill = models.ForeignKey(Bill, on_delete=models.SET_NULL, null=True)
     # invoice type
-    invoice_type = models.CharField(choices=INVOICE_TYPE, max_length=1, default='2')
+    invoice_type = models.CharField(choices=INVOICE_TYPE, max_length=1, default=CURRENT_BILL)
     # given amount
     invoice_amount = models.FloatField('Invoice Amount', default=0)
     adjustment = models.FloatField(blank=True, null=True, default=0)
