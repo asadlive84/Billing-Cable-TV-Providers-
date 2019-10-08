@@ -1,0 +1,99 @@
+{% extends 'customers-template/base.html' %}
+
+{% block title %}
+Create Customer
+{% endblock %}
+
+{% block content %}
+
+
+
+        <div class="breadcrumbs">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Create Package</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="{%  url 'customer:customer_list' %}">Dashboard</a></li>
+
+                            <li class="active">create package</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content mt-3">
+            <div class="animated fadeIn">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="card">
+
+                            <div class="card-body">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <strong>Customer Package Form</strong>
+                                    </div>
+                                    <div class="card-body card-block">
+                                        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                            {% csrf_token %}
+
+                                            <div class="row form-group">
+                                                <div class="col col-md-3"><label for="{{ form.package_name.id_for_label }}" class="form-control-label">*Package Name</label></div>
+                                                <div class="col-12 col-md-9">{{ form.package_name }}<small class="form-text text-muted">Package name</small></div>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col col-md-3"><label for="{{ form.package_bill.id_for_label }}" class=" form-control-label">*Package Bill Amount</label></div>
+                                                <div class="col-12 col-md-9">{{ form.package_bill }}<small class="help-block form-text">package bill amount tk</small></div>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col col-md-3"><label for="{{ form.month_cycle.id_for_label }}" class=" form-control-label">*Month Cycle</label></div>
+                                                <div class="col-12 col-md-9">{{ form.month_cycle }}<small class="help-block form-text">give your month cycle numaric value like 30</small></div>
+                                            </div>
+
+
+
+{#                                                <div class="row form-group">#}
+{#                                                    <div class="col col-md-3"><label for="file-input" class=" form-control-label">File input</label></div>#}
+{#                                                    <div class="col-12 col-md-9"><input type="file" id="file-input" name="file-input" class="form-control-file"></div>#}
+{#                                                </div>#}
+
+                                             <button type="submit" class="btn btn-primary btn-sm">
+                                            <i class="fa fa-dot-circle-o"></i> Create Package
+                                            </button>
+                                        </form>
+                                    </div>
+                                    <div class="card-footer">
+
+                                        <button type="reset" class="btn btn-danger btn-sm">
+                                            <i class="fa fa-ban"></i> Reset
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div><!-- .animated -->
+        </div><!-- .content -->
+
+
+    </div><!-- /#right-panel -->
+
+{% endblock %}
+
+
+
+
+</body>
+
+</html>

@@ -43,7 +43,7 @@ class Bill(models.Model):
 class Invoice(models.Model):
     invoice_id = models.CharField('Invoice ID',
                                   unique=True,
-                                  default=get_random_string(length=8, allowed_chars="FD23456PKL"),
+                                  blank=True,
                                   max_length=8,
                                   db_index=True)
     # invoice creator as sales person or bill collect
@@ -55,12 +55,16 @@ class Invoice(models.Model):
     # given amount
     invoice_amount = models.FloatField('Invoice Amount', default=0)
     adjustment = models.FloatField(blank=True, null=True, default=0)
-    custom_bill_date = models.DateField(blank=True, null=True)
+    custom_bill_date = models.DateField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"{self.bill.customer.name} {self.invoice_amount} {self.invoice_creator}"
+
+    def save(self, *args, **kwargs):
+        self.invoice_id = str(get_random_string(length=8, allowed_chars="FD23456PKL"))
+        super().save(*args, **kwargs)
 
     class Meta:
         ordering = ('-created_at',)
@@ -102,5 +106,3 @@ def adjustment_saved(sender, instance, created=True, **kwargs):
         instance.bill.total_day = day.days
         instance.bill.total_bill = instance.bill.customer.package_name.per_day_amount * instance.bill.total_day
         instance.bill.save()
-
-

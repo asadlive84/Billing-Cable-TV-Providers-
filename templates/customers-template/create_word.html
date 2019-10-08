@@ -1,0 +1,99 @@
+{% extends 'customers-template/base.html' %}
+
+{% block title %}
+Create Customer
+{% endblock %}
+
+{% block content %}
+
+
+
+        <div class="breadcrumbs">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Create Word</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="{%  url 'customer:customer_list' %}">Dashboard</a></li>
+
+                            <li class="active">create word</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content mt-3">
+            <div class="animated fadeIn">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="card">
+
+                            <div class="card-body">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <strong>Word Form</strong>
+                                    </div>
+                                    <div class="card-body card-block">
+                                        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                            {% csrf_token %}
+
+                                            <div class="row form-group">
+                                                <div class="col col-md-3"><label for="{{ form.union.id_for_label }}" class="form-control-label">*Union Name</label></div>
+                                                <div class="col-12 col-md-9">{{ form.union }}<small class="form-text text-muted">Union name</small></div>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col col-md-3"><label for="{{ form.word_name.id_for_label }}" class=" form-control-label">*Word Name</label></div>
+                                                <div class="col-12 col-md-9">{{ form.word_name }}<small class="help-block form-text">word name</small></div>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col col-md-3"><label for="{{ form.word_number.id_for_label }}" class=" form-control-label">Word Number</label></div>
+                                                <div class="col-12 col-md-9">{{ form.word_number }}<small class="help-block form-text">word number</small></div>
+                                            </div>
+
+
+
+{#                                                <div class="row form-group">#}
+{#                                                    <div class="col col-md-3"><label for="file-input" class=" form-control-label">File input</label></div>#}
+{#                                                    <div class="col-12 col-md-9"><input type="file" id="file-input" name="file-input" class="form-control-file"></div>#}
+{#                                                </div>#}
+
+                                             <button type="submit" class="btn btn-primary btn-sm">
+                                            <i class="fa fa-dot-circle-o"></i> Create Union
+                                            </button>
+                                        </form>
+                                    </div>
+                                    <div class="card-footer">
+
+                                        <button type="reset" class="btn btn-danger btn-sm">
+                                            <i class="fa fa-ban"></i> Reset
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div><!-- .animated -->
+        </div><!-- .content -->
+
+
+    </div><!-- /#right-panel -->
+
+{% endblock %}
+
+
+
+
+</body>
+
+</html>

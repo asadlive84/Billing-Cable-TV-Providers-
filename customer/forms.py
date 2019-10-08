@@ -1,5 +1,5 @@
-from customer.models import Customer
-from bill.models import Invoice
+from customer.models import Customer, Package, Union, Word
+from bill.models import Invoice, Bill
 from django import forms
 from django.forms import ModelForm
 
@@ -35,5 +35,64 @@ class CreateInvoiceForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(CreateInvoiceForm, self).__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control'
+
+
+class CreatePackageForm(forms.ModelForm):
+    class Meta:
+        model = Package
+        fields = [
+            'package_name',
+            'package_bill',
+            'month_cycle',
+            'per_day_amount',
+        ]
+
+    def __init__(self, *args, **kwargs):
+        super(CreatePackageForm, self).__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control'
+
+
+class CreateUnionForm(forms.ModelForm):
+    class Meta:
+        model = Union
+        fields = [
+            'union_name',
+            'union_number',
+            'help_info',
+        ]
+
+    def __init__(self, *args, **kwargs):
+        super(CreateUnionForm, self).__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control'
+
+
+class CreateWordForm(forms.ModelForm):
+    class Meta:
+        model = Word
+        fields = [
+            'union',
+            'word_name',
+            'word_number',
+        ]
+
+    def __init__(self, *args, **kwargs):
+        super(CreateWordForm, self).__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control'
+
+
+class CreateBillForm(forms.ModelForm):
+    class Meta:
+        model = Bill
+        fields = [
+            'billing_start_date',
+        ]
+
+    def __init__(self, *args, **kwargs):
+        super(CreateBillForm, self).__init__(*args, **kwargs)
         for visible in self.visible_fields():
             visible.field.widget.attrs['class'] = 'form-control'
