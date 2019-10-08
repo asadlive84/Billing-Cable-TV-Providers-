@@ -25,7 +25,9 @@ def customer_list(request):
 @login_required()
 def customer_details(request, slug):
     customer = get_object_or_404(Customer, slug=slug)
-    return render(request, 'customers-template/customer_details.html', {'customer': customer})
+    b = Bill.objects.get(customer=customer)
+    customer_invoice=Invoice.objects.filter(bill=b).order_by('-custom_bill_date')
+    return render(request, 'customers-template/customer_details.html', {'customer': customer, 'customer_invoice': customer_invoice})
 
 
 @login_required()
@@ -67,19 +69,22 @@ def create_invoices(request, customer_id):
         form = CreateInvoiceForm(request.POST, request.FILES)
         custom_bill_date = request.POST.get('custom_bill_date')
 
-        if form.is_valid():
-            py_convert_date = datetime.strptime(custom_bill_date, "%d/%m/%Y")
-            data = form.save(commit=False)
-            data.bill = bill
-            data.invoice_creator = request.user
-            data.custom_bill_date = py_convert_date.date()
-            data.save()
-            x = Invoice.objects.get(pk=data.pk)
-            print(x)
-            messages.success(request, f"Success, You created invoice {data}")
-            return HttpResponseRedirect(reverse('customer:customer_details', args=(customer.slug,)))
+        if customer.customer_status == '0' and customer.bill.due_bill < 1:
+            messages.warning(request, f"{customer.name} is deactivate. So you cant create any invoice!")
         else:
-            messages.warning(request, "Invoice didn't create")
+            if form.is_valid():
+                py_convert_date = datetime.strptime(custom_bill_date, "%d/%m/%Y")
+                data = form.save(commit=False)
+                data.bill = bill
+                data.invoice_creator = request.user
+                data.custom_bill_date = py_convert_date.date()
+                data.save()
+                x = Invoice.objects.get(pk=data.pk)
+                messages.success(request, f"Success, You created invoice {data}")
+                return HttpResponseRedirect(reverse('customer:customer_details', args=(customer.slug,)))
+            else:
+                messages.warning(request, "Invoice didn't create")
+                return HttpResponseRedirect(reverse('customer:customer_details', args=(customer.slug,)))
     else:
         form = CreateInvoiceForm()
 

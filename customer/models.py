@@ -30,6 +30,10 @@ class Package(models.Model):
     def __str__(self):
         return f"{self.package_name} - {self.package_bill}"
 
+    @property
+    def package_details(self):
+        return f"{self.package_name} {self.month_cycle}"
+
     def save(self, *args, **kwargs):
         self.per_day_amount = "{:.2f}".format(self.package_bill / self.month_cycle)
         return super(Package, self).save(*args, **kwargs)

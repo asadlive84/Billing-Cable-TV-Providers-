@@ -84,11 +84,13 @@ def bill_balance_saved(sender, instance, created=False, **kwargs):
         total day count and saved for Customer(Bill instance objects)
         '''
         instance.bill.total_day = day.days
-        instance.bill.total_bill = instance.bill.customer.package_name.per_day_amount * instance.bill.total_day
+        instance.bill.total_bill = round(instance.bill.customer.package_name.per_day_amount * instance.bill.total_day, 2)
+        instance.bill.due_bill = round(instance.bill.total_bill-instance.bill.balance, 2)
         instance.bill.save()
     if not created:
         instance.bill.total_day = day.days
-        instance.bill.total_bill = instance.bill.customer.package_name.per_day_amount * instance.bill.total_day
+        instance.bill.total_bill = round(instance.bill.customer.package_name.per_day_amount * instance.bill.total_day, 2)
+        instance.bill.due_bill = round(instance.bill.total_bill - instance.bill.balance, 2)
         instance.bill.save()
 
 
@@ -104,5 +106,6 @@ def adjustment_saved(sender, instance, created=True, **kwargs):
         '''
         instance.bill.balance = instance.bill.balance - instance.adjustment
         instance.bill.total_day = day.days
-        instance.bill.total_bill = instance.bill.customer.package_name.per_day_amount * instance.bill.total_day
+        instance.bill.total_bill = round(instance.bill.customer.package_name.per_day_amount * instance.bill.total_day, 2)
+        instance.bill.due_bill = round(instance.bill.total_bill-instance.bill.balance, 2)
         instance.bill.save()

@@ -38,18 +38,144 @@
 
                             <div class="card-body">
                                 <aside class="profile-nav alt">
-                            <section class="card">
-                                <div class="card-header user-header alt bg-dark">
-                                    <div class="media">
-                                        <a href="#">
-                                            <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt="" src="{% static 'images/admin.jpg' %} ">
-                                        </a>
-                                        <div class="media-body">
-                                            <h2 class="text-light display-6">{{ customer.name }} <span class="badge badge-primary pull-right">{{ customer.bill.due_bill }} TK</span></h2>
-                                            <p>{{ customer.word_union }}</p>
+                                    <section class="card">
+                                        <div class="card-header user-header alt bg-dark">
+                                            <div class="media">
+                                                <a href="#">
+                                                    <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt="" src="{% static 'images/admin.jpg' %} ">
+                                                </a>
+                                                <div class="media-body">
+                                                    <h2 class="text-light display-6">{{ customer.name }}
+                                                    {% if customer.bill.due_bill > 0 %}
+                                                    <span class="badge badge-danger pull-right"> Due {{ customer.bill.due_bill }} TK</span>
+                                                    {% else %}
+                                                    <span class="badge badge-success pull-right"> No due</span>
+                                                    {% endif %}
+                                                    </h2>
+                                                    <p>{{ customer.word_union }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    <div class="card">
+                                        <div class="card-header">
+                                            Customer ID
+                                            <strong>{{ customer.customer_id }}</strong>
+                                            <span class="float-right"> <strong>Status:</strong> 
+                                            {% if customer.customer_status == '1' %}
+                                             <i>from {{ customer.bill.billing_start_date }}</i>
+                                            <span class="badge badge-success pull-right"> Active </span>
+
+                                            {% else %}
+                                             <span class="badge badge-danger pull-right"> Deactivate</span>
+                                            {% endif %}
+                                            </span>
+
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row mb-4">
+                                                <div class="col-sm-6">
+                                                    <h6 class="mb-3">Customer:</h6>
+                                                    <div>
+                                                        <strong>{{ customer.name }}</strong>
+                                                    </div>
+                                                    <div>{{ customer.word_union.word_name }}, {{ customer.word_union.word_number }}</div>
+                                                    <div>{{ customer.word_union.union.union_info }}</div>
+                                                    <div>Email: info@webz.com.pl</div>
+                                                    <div>Phone: {{ customer.phone_number }}</div>
+                                                    {% if customer.bill.due_bill > 0 %}
+                                                    <a href="{% url 'customer:create_invoices' customer.customer_id%}">
+                                                        <span class="badge badge-success pull-right"> Create Invoice</span>
+                                                    </a>
+                                                    {% endif %}
+
+                                                </div>
+
+
+                                            </div>
+
+                                            <div class="table-responsive-sm">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="center">#</th>
+                                                            <th>Month</th>
+                                                            <th>Description</th>
+
+
+
+                                                            <th class="right">Total</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% for invoice in customer_invoice %}
+                                                        <tr>
+                                                            <td class="center">{{ forloop.counter }}</td>
+                                                            <td class="left strong">{{ invoice.custom_bill_date }}</td>
+                                                            <td class="left">{{ invoice.get_invoice_type_display }}</td>
+
+
+                                                            <td class="right">{{ invoice.invoice_amount }} TK</td>
+                                                        </tr>
+                                                        {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-4 col-sm-5">
+
+                                                </div>
+
+                                                <div class="col-lg-7 col-sm-5 ml-auto">
+                                                    <table class="table table-clear">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="left">
+                                                                    <strong>Subtotal</strong>
+                                                                </td>
+                                                                <td class="right">{{ customer.bill.balance }} TK</td>
+                                                            </tr>
+
+                                                             <tr>
+                                                                <td class="left">
+                                                                    <strong>Package Details</strong>
+
+                                                                </td>
+                                                                <td class="right"> {{ customer.package_name.package_details }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="left">
+                                                                    <strong>Total Bill</strong>
+                                                                    <i>{{ customer.bill.total_day }} days * {{ customer.package_name.per_day_amount }} TK</i>
+                                                                </td>
+                                                                <td class="right"> {{ customer.bill.total_bill }} TK</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="left">
+                                                                    <strong>Due </strong>
+                                                                </td>
+                                                                <td class="right">{{ customer.bill.due_bill }}</td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td class="left">
+                                                                    <strong>Connection Stating From</strong>
+                                                                </td>
+                                                                <td class="right">
+                                                                    <strong>{{ customer.bill.billing_start_date }}</strong>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+
+                                            </div>
+
                                         </div>
                                     </div>
-                                </div>
+
 
 
                                 <ul class="list-group list-group-flush">
@@ -71,7 +197,7 @@
                                     <li class="list-group-item">
                                         <a href="#">
                                             <i class="fa fa-tasks"></i>
-                                            Package Name <span class="badge badge-danger pull-right">{{ customer.package_name }}</span>
+                                            Package Name <span class="badge badge-primary pull-right">{{ customer.package_name }}</span>
                                         </a>
                                     </li>
                                     <li class="list-group-item">
@@ -95,7 +221,7 @@
                                     <li class="list-group-item">
                                         <a href="#">
                                             <i class="fa fa-comments-o"></i>
-                                            Total Days <span class="badge badge-warning pull-right r-activity">{{ customer.bill.total_day }} days</span>
+                                            Total Days <i> from {{ customer.bill.billing_start_date }}</i> <span class="badge badge-warning pull-right r-activity">{{ customer.bill.total_day }} days</span>
                                         </a>
                                     </li>
 
@@ -116,6 +242,11 @@
                             </section>
                         </aside>
                             </div>
+
+
+
+
+
                         <div class="card-header">
 
                                 <strong class="card-title">All Invoices</strong>
@@ -133,7 +264,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    {% for invoice in customer.bill.invoice_set.all %}
+                                    {% for invoice in customer_invoice %}
                                         <tr>
                                             <td><a href="">{{ invoice.invoice_id }}</a></td>
                                             <td>{{ invoice.invoice_creator }}</td>
