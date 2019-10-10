@@ -20,6 +20,39 @@ INVOICE_TYPE = [
 ]
 
 
+class BillHistory(models.Model):
+    date_version = models.IntegerField(editable=False)
+    bill = models.ForeignKey('Bill', on_delete=models.CASCADE)
+    connection_date_new = models.DateField()
+    connection_date_end = models.DateField(blank=True, null=True)
+    user_new_bill = models.FloatField(default=0, blank=True)
+    total_days = models.FloatField(blank=True, default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = ('date_version', 'bill')
+
+    def __str__(self):
+        return f"{self.date_version} | {self.connection_date_new}"
+
+    @property
+    def last_activate_date(self):
+        return self.connection_date_new
+
+    def save(self, *args, **kwargs):
+        # start with version 1 and increment it for each bill
+        current_date_version = BillHistory.objects.filter(bill=self.bill).order_by('-date_version')[:1]
+        self.date_version = current_date_version[0].date_version + 1 if current_date_version else 1
+        # days and bill calculate from new connection date
+        self.total_days = round((timezone.now().date() - self.connection_date_new).days, 1)
+
+        self.user_new_bill = round(
+            sum([i.bill.customer.package_name.per_day_amount for i in current_date_version]) * self.total_days, 2)
+
+        super(BillHistory, self).save(*args, **kwargs)
+
+
 class Bill(models.Model):
     bill_id = models.CharField('Bill ID',
                                unique=True,
@@ -30,30 +63,51 @@ class Bill(models.Model):
     billing_start_date = models.DateField()
     balance = models.FloatField(default=0)
     due_bill_status = models.BooleanField('Due Status', default=True)
+    due_bill = models.FloatField(default=0, blank=True)
     user_has_bill = models.FloatField(default=0, blank=0)
     # connection bill if object has new connection bill
     connection_bill = models.FloatField(null=0, blank=0, default=0)
     # bill paid user
     user_bill_paid = models.FloatField(blank=0, default=0)
     total_day = models.IntegerField(blank=True, null=True)
+    last_total_day_for_new_date = models.IntegerField(blank=True, null=True)
+    last_user_has_bill = models.FloatField(default=0, blank=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"{self.customer.name}"
 
+    def bill_history(self):
+        return BillHistory.objects.filter(bill=self).order_by('-date_version')
+
+    def days_history(self):
+        b = BillHistory.objects.filter(bill=self).order_by('-date_version')[:1]
+        return sum([x.total_days for x in b])
+
+    def last_user_bill(self):
+        b = BillHistory.objects.filter(bill=self).order_by('-date_version')[:1]
+        return sum([x.user_new_bill for x in b])
+
     def save(self, *args, **kwargs):
         self.balance = self.connection_bill + self.user_bill_paid
         self.total_day = (timezone.now().date() - self.billing_start_date).days
+        self.last_total_day_for_new_date = self.days_history()
+        self.last_user_has_bill = self.last_user_bill()
         self.user_has_bill = round(
             (timezone.now().date() - self.billing_start_date).days * self.customer.package_name.per_day_amount, 2)
-
+        self.due_bill = round(self.user_bill_paid - self.user_has_bill, 2)
         if self.user_bill_paid >= self.user_has_bill:
             self.due_bill_status = False
         elif self.user_bill_paid < self.user_has_bill:
             self.due_bill_status = True
 
         super().save(*args, **kwargs)
+
+        bill_history = self.bill_history()
+        if not bill_history or self.billing_start_date != bill_history[0].connection_date_new:
+            new_bill_date_history = BillHistory(bill=self, connection_date_new=self.billing_start_date)
+            new_bill_date_history.save()
 
 
 class Invoice(models.Model):
@@ -76,8 +130,8 @@ class Invoice(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    # def __str__(self):
-    #     return f"{self.bill.customer.name} {self.invoice_amount} {self.invoice_creator}"
+    def __str__(self):
+        return f"{self.invoice_amount}"
 
     def save(self, *args, **kwargs):
         self.invoice_id = str(get_random_string(length=8, allowed_chars="FD23456PKL"))

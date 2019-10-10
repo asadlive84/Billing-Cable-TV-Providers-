@@ -6,7 +6,7 @@ from django.urls import reverse
 # from django.utils.datetime_safe import datetime
 from datetime import datetime, timedelta
 from customer.models import Customer
-from bill.models import Bill, Invoice
+from bill.models import Bill, Invoice, BillHistory
 from customer.forms import \
     CreateCustomerForm, \
     CreateInvoiceForm, \
@@ -26,9 +26,24 @@ def customer_list(request):
 def customer_details(request, slug):
     customer = get_object_or_404(Customer, slug=slug)
     b = Bill.objects.get(customer=customer)
+    last_activate = BillHistory.objects.filter(bill=b).order_by('-created_at')[:1]
+    last_activate_date = sum([x.total_days for x in last_activate])
+    last_activate_month = round(sum([x.total_days for x in last_activate])/customer.package_name.month_cycle, 2)
+    next_bill_end_date = b.billing_start_date + timedelta(
+        days=customer.package_name.month_cycle+customer.package_name.month_cycle)
+    current_bill_end_date = b.billing_start_date + timedelta(
+        days=customer.package_name.month_cycle)
     customer_invoice = Invoice.objects.filter(bill=b).order_by('-custom_bill_date')
-    return render(request, 'customers-template/customer_details.html',
-                  {'customer': customer, 'customer_invoice': customer_invoice})
+    total_cycle = round(b.total_day/b.customer.package_name.month_cycle, 1)
+    context = {'customer': customer,
+               'customer_invoice': customer_invoice,
+               'next_bill_end_date': next_bill_end_date,
+               'current_bill_end_date':current_bill_end_date,
+               'total_cycle': total_cycle,
+               'last_activate_date': last_activate_date,
+               'last_activate_month': last_activate_month,
+               }
+    return render(request, 'customers-template/customer_details.html', context)
 
 
 @login_required()

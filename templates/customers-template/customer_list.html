@@ -52,9 +52,21 @@ Customer List
                                     <tbody>
                                     {% for customer in customers %}
                                         <tr>
-                                            <td><a href="{{ customer.get_absolute_url }}">{{ customer.name }}</a></td>
+                                            <td>
+                                                {% if customer.bill.due_bill_status %}
+                                                <a style="color:red" href="{{ customer.get_absolute_url }}">{{ customer.name }}</a>
+                                                 {% else %}
+                                                 <a style="color: #0b2e13" href="{{ customer.get_absolute_url }}">{{ customer.name }}</a>
+                                                {% endif %}
+                                            </td>
                                             <td>{{ customer.phone_number }}</td>
-                                            <td>{{ customer.bill.due_bill }}</td>
+                                            <td>{% if customer.bill.due_bill_status %}
+                                                <span style="color: red"> {{ customer.bill.due_bill }}</span>
+                                                 {% else %}
+                                                  {{ customer.bill.due_bill }}
+                                                {% endif %}
+
+                                            </td>
                                             <td>{{ customer.word_union }}</td>
                                         </tr>
                                     {% endfor %}

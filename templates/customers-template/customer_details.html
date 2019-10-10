@@ -46,13 +46,14 @@
                                                 </a>
                                                 <div class="media-body">
                                                     <h2 class="text-light display-6">{{ customer.name }}
-                                                    {% if customer.bill.due_bill > 0 %}
+                                                    {% if customer.bill.due_bill_status %}
                                                     <span class="badge badge-danger pull-right"> Due {{ customer.bill.due_bill }} TK</span>
                                                     {% else %}
-                                                    <span class="badge badge-success pull-right"> No due</span>
+                                                    <span class="badge badge-success pull-right"> No Due</span>
                                                     {% endif %}
                                                     </h2>
                                                     <p>{{ customer.word_union }}</p>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -79,16 +80,29 @@
                                                     <h6 class="mb-3">Customer:</h6>
                                                     <div>
                                                         <strong>{{ customer.name }}</strong>
+
                                                     </div>
                                                     <div>{{ customer.word_union.word_name }}, {{ customer.word_union.word_number }}</div>
                                                     <div>{{ customer.word_union.union.union_info }}</div>
-                                                    <div>Email: info@webz.com.pl</div>
-                                                    <div>Phone: {{ customer.phone_number }}</div>
-                                                    {% if customer.bill.due_bill > 0 %}
+                                                    <div>Phone: 0{{ customer.phone_number }}</div>
+                                                    <div>Balance: {{ customer.bill.balance }} TK </div>
+
+                                                    {% if customer.bill.due_bill_status  %}
                                                     <a href="{% url 'customer:create_invoices' customer.customer_id%}">
                                                         <span class="badge badge-success pull-right"> Create Invoice</span>
                                                     </a>
                                                     {% endif %}
+
+                                                </div>
+
+                                                <div class="col-sm-6">
+                                                    <h6 class="mb-3">Connection Info:</h6>
+                                                    <p>Total Month {{ total_cycle }}</p>
+                                                    <div>Connection Start: {{ customer.bill.billing_start_date }}</div>
+                                                    <div>Current Bill cycle end : {{ current_bill_end_date }} </div>
+                                                    <div>Next Bill Cycle End Date: {{ next_bill_end_date }}</div>
+
+
 
                                                 </div>
 
@@ -105,14 +119,14 @@
 
 
 
-                                                            <th class="right">Total</th>
+                                                            <th class="right">Amount</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         {% for invoice in customer_invoice %}
                                                         <tr>
                                                             <td class="center">{{ forloop.counter }}</td>
-                                                            <td class="left strong">{{ invoice.custom_bill_date }}</td>
+                                                            <td class="left strong">{{ invoice.custom_bill_date }} - {{ invoice.invoice_creator }}</td>
                                                             <td class="left">{{ invoice.get_invoice_type_display }}</td>
 
 
@@ -132,7 +146,7 @@
                                                         <tbody>
                                                             <tr>
                                                                 <td class="left">
-                                                                    <strong>Subtotal</strong>
+                                                                    <strong>Paid</strong>(Subtotal)
                                                                 </td>
                                                                 <td class="right">{{ customer.bill.balance }} TK</td>
                                                             </tr>
@@ -149,21 +163,37 @@
                                                                     <strong>Total Bill</strong>
                                                                     <i>{{ customer.bill.total_day }} days * {{ customer.package_name.per_day_amount }} TK</i>
                                                                 </td>
-                                                                <td class="right"> {{ customer.bill.total_bill }} TK</td>
+                                                                <td class="right"> {{ customer.bill.user_has_bill }} TK</td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="left">
-                                                                    <strong>Due </strong>
+                                                                    <strong>{% if customer.bill.due_bill_status %} Due {% else %}Advance Paid{% endif %}</strong>
                                                                 </td>
-                                                                <td class="right">{{ customer.bill.due_bill }}</td>
+                                                                <td class="right">
+                                                                    {% if customer.bill.due_bill_status %}
+                                                                    {{ customer.bill.due_bill }}
+                                                                    {% else %}
+                                                                    {{ customer.bill.due_bill }}
+                                                                    {% endif %}
+                                                                TK
+                                                                </td>
                                                             </tr>
 
                                                             <tr>
                                                                 <td class="left">
-                                                                    <strong>Connection Stating From</strong>
+                                                                    <strong>Connection</strong>
                                                                 </td>
                                                                 <td class="right">
-                                                                    <strong>{{ customer.bill.billing_start_date }}</strong>
+                                                                    Month <strong>{{ total_cycle }}</strong> | Days {{ customer.bill.total_day }}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="left">
+                                                                    <strong>Connection</strong>
+                                                                </td>
+                                                                <td class="right">
+                                                                    Days <strong>{{ last_activate_date }}</strong>
+                                                                    Month <strong>{{ last_activate_month }}</strong>
                                                                 </td>
                                                             </tr>
                                                         </tbody>
@@ -178,66 +208,7 @@
 
 
 
-                                <ul class="list-group list-group-flush">
-                                    <p class="text-sm-center display-10">Membership created {{ customer.created_at }} | created by: {{ customer.created_user.username }}  {{ customer.created_user.name }}</p>
 
-                                    <li class="list-group-item">
-
-                                        <a href="#">
-                                            <i class="fa fa-envelope-o"></i>
-                                            Total Balance  <span class="badge badge-primary pull-right">{{ customer.bill.balance }} TK</span>
-                                        </a>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <a href="#">
-                                            <i class="fa fa-envelope-o"></i>
-                                            Connection Status  <span class="badge badge-primary pull-right">{{ customer.get_customer_status_display }}</span>
-                                        </a>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <a href="#">
-                                            <i class="fa fa-tasks"></i>
-                                            Package Name <span class="badge badge-primary pull-right">{{ customer.package_name }}</span>
-                                        </a>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <a href="#">
-                                            <i class="fa fa-tasks"></i>
-                                            Full Address <span class="badge badge-danger pull-right">{{ customer.address }}</span>
-                                        </a>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <a href="#">
-                                            <i class="fa fa-bell-o"></i>
-                                            Due <span class="badge badge-success pull-right">{{ customer.total_due }} TK</span>
-                                        </a>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <a href="#">
-                                            <i class="fa fa-comments-o"></i>
-                                            Billing Start Date <span class="badge badge-warning pull-right r-activity">{{ customer.bill.billing_start_date }}</span>
-                                        </a>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <a href="#">
-                                            <i class="fa fa-comments-o"></i>
-                                            Total Days <i> from {{ customer.bill.billing_start_date }}</i> <span class="badge badge-warning pull-right r-activity">{{ customer.bill.total_day }} days</span>
-                                        </a>
-                                    </li>
-
-                                    <li class="list-group-item">
-                                        <a href="#"> <i class="fa fa-comments-o"></i>
-                                            Total Bill <span class="badge badge-warning pull-right r-activity">{{ customer.bill.total_bill }} TK</span>
-                                        </a>
-                                    </li>
-
-                                    <li class="list-group-item">
-                                        <a href="#">
-                                            <i class="fa fa-comments-o"></i>
-                                            Billing Start Date <span class="badge badge-warning pull-right r-activity">{{ customer.bill.billing_start_date }}</span>
-                                        </a>
-                                    </li>
-                                </ul>
 
                             </section>
                         </aside>
