@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 # from django.utils.datetime_safe import datetime
-from datetime import datetime
+from datetime import datetime, timedelta
 from customer.models import Customer
 from bill.models import Bill, Invoice
 from customer.forms import \
@@ -26,8 +26,9 @@ def customer_list(request):
 def customer_details(request, slug):
     customer = get_object_or_404(Customer, slug=slug)
     b = Bill.objects.get(customer=customer)
-    customer_invoice=Invoice.objects.filter(bill=b).order_by('-custom_bill_date')
-    return render(request, 'customers-template/customer_details.html', {'customer': customer, 'customer_invoice': customer_invoice})
+    customer_invoice = Invoice.objects.filter(bill=b).order_by('-custom_bill_date')
+    return render(request, 'customers-template/customer_details.html',
+                  {'customer': customer, 'customer_invoice': customer_invoice})
 
 
 @login_required()
@@ -64,27 +65,47 @@ def create_invoices(request, customer_id):
     customer = Customer.objects.get(customer_id=customer_id)
     bill = Bill.objects.get(customer=customer.id)
     form = CreateInvoiceForm()
+    r = HttpResponseRedirect(reverse('customer:customer_details', args=(customer.slug,)))
 
     if request.method == 'POST':
         form = CreateInvoiceForm(request.POST, request.FILES)
         custom_bill_date = request.POST.get('custom_bill_date')
 
-        if customer.customer_status == '0' and customer.bill.due_bill < 1:
-            messages.warning(request, f"{customer.name} is deactivate. So you cant create any invoice!")
-        else:
-            if form.is_valid():
-                py_convert_date = datetime.strptime(custom_bill_date, "%d/%m/%Y")
-                data = form.save(commit=False)
-                data.bill = bill
-                data.invoice_creator = request.user
-                data.custom_bill_date = py_convert_date.date()
-                data.save()
-                x = Invoice.objects.get(pk=data.pk)
-                messages.success(request, f"Success, You created invoice {data}")
-                return HttpResponseRedirect(reverse('customer:customer_details', args=(customer.slug,)))
-            else:
-                messages.warning(request, "Invoice didn't create")
-                return HttpResponseRedirect(reverse('customer:customer_details', args=(customer.slug,)))
+        py_convert_date = datetime.strptime(custom_bill_date, "%d/%m/%Y")
+
+        '''
+            1st logic:
+            if customer status is deactivate and customer has no due amount then invoice isn't create
+            2nd logic:
+            if customer invoice date is lower or equal today time and customer has due greater than 0 then form will create
+            3rd logic:
+            if customer invoice date higher than today date or customer has no due amount then form won't create
+        '''
+
+        if form['invoice_type'].value() == '3' or py_convert_date.date() <= datetime.today().date():
+            if customer.customer_status == '0' and customer.bill.due_bill < 1:
+                messages.warning(request, f"{customer.name} is deactivate and no due. So you cant create any invoice!")
+                return r
+            elif form['invoice_type'].value() == '3' or customer.bill.due_bill_status:
+                if form.is_valid():
+                    data = form.save(commit=False)
+                    data.bill = bill
+                    data.invoice_creator = request.user
+                    data.custom_bill_date = py_convert_date.date()
+                    data.save()
+                    messages.success(request, f"Success, You created invoice {data}")
+                    return r
+                else:
+                    messages.warning(request, "data not valid Invoice didn't create")
+                    return r
+            elif not customer.bill.due_bill_status:
+                messages.warning(request, f"customer {customer.name} has no due")
+                return r
+        elif form['invoice_type'].value() != '3' and py_convert_date.date() > datetime.today().date():
+            messages.warning(request,
+                             f"{form['invoice_type'].value()} You can't create invoice after this date {datetime.today().date()}")
+            return r
+
     else:
         form = CreateInvoiceForm()
 
@@ -110,6 +131,7 @@ def create_package(request):
     return render(request, 'customers-template/create_package.html', {'form': form})
 
 
+@login_required()
 def create_union(request):
     form = CreateUnionForm()
     if request.method == 'POST':
@@ -123,6 +145,7 @@ def create_union(request):
     return render(request, 'customers-template/create_union.html', {'form': form})
 
 
+@login_required()
 def create_word(request):
     form = CreateWordForm()
     if request.method == 'POST':

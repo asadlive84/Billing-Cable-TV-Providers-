@@ -2,15 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ec526eb6-eb14-4760-9b00-2d1e6d72e376" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/bill/migrations/0017_auto_20191009_0504.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bill/migrations/0018_auto_20191009_0531.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/migrations/0017_auto_20191009_0504.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/migrations/0018_auto_20191009_0531.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0019_auto_20191009_1921.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0020_auto_20191009_2008.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0021_auto_20191009_2009.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0022_auto_20191009_2041.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0023_auto_20191009_2049.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0024_auto_20191009_2049.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0025_auto_20191009_2056.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0026_auto_20191009_2108.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0027_auto_20191010_2031.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0028_auto_20191010_2132.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0029_auto_20191010_2153.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0019_auto_20191009_1921.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0020_auto_20191009_2008.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0021_auto_20191009_2009.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0022_auto_20191009_2041.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0023_auto_20191009_2049.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0024_auto_20191009_2049.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0025_auto_20191009_2056.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0026_auto_20191009_2108.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0027_auto_20191010_2031.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0028_auto_20191010_2132.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0029_auto_20191010_2153.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bill/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/bill/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/customer/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/customers-template/customer_details.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/customers-template/customer_details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/customers-template/create_invoice.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/customers-template/create_invoice.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -165,6 +182,8 @@
       <workItem from="1570555514914" duration="262000" />
       <workItem from="1570555799012" duration="2478000" />
       <workItem from="1570558332339" duration="19511000" />
+      <workItem from="1570620850336" duration="12719000" />
+      <workItem from="1570715836126" duration="6077000" />
     </task>
     <servers />
   </component>
