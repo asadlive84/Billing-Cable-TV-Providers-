@@ -97,11 +97,23 @@ class Customer(models.Model):
         ordering = ('-created_at',)
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
     @property
     def customer_info(self):
         return f"{self.name} {self.phone_number}"
+
+    @property
+    def customer_word_union(self):
+        return f"{self.word_union}"
+
+    @property
+    def customer_package_full(self):
+        return f"{self.package_name}"
+
+    @property
+    def customer_create_date(self):
+        return f"{self.created_at.date()}-{self.created_at.time()}"
 
     def get_absolute_url(self):
         return reverse('customer:customer_details', args=[str(self.slug)])

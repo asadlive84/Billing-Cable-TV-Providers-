@@ -1,6 +1,6 @@
 from django.urls import path
 from customer import views
-
+from customer import serializers_view
 app_name = 'customer'
 
 urlpatterns = [
@@ -13,4 +13,8 @@ urlpatterns = [
     path('create_union/', views.create_union, name="create_union"),
     path('create_word/', views.create_word, name="create_word"),
     path('create_bill/', views.create_bill, name="create_bill"),
+
+
+
+    path('api/', serializers_view.CustomerListAPI.as_view(), name="customer_list_api")
 ]

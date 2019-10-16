@@ -8,6 +8,8 @@ class CustomUserManager(UserManager):
 
 
 class CustomUser(AbstractUser):
+    phone_number = models.PositiveIntegerField(unique=True, default='01711123456')
+    USERNAME_FIELD = 'phone_number'
     objects = CustomUserManager()
 
 
