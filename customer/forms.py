@@ -4,6 +4,16 @@ from django import forms
 from django.forms import ModelForm
 
 
+class BillCheckingFrom(forms.Form):
+    phone_num_customer_id = forms.CharField(max_length=100, widget=forms.TextInput(attrs={
+        'placeholder': 'Your mobile number or customer id'}))
+
+    def __init__(self, *args, **kwargs):
+        super(BillCheckingFrom, self).__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control form-control-lg'
+
+
 class CreateCustomerForm(forms.ModelForm):
     class Meta:
         model = Customer

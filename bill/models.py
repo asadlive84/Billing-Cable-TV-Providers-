@@ -34,7 +34,7 @@ class BillHistory(models.Model):
         unique_together = ('date_version', 'bill')
 
     def __str__(self):
-        return f"{self.date_version} | {self.connection_date_new}"
+        return f"{self.bill.customer.name} {self.date_version} | {self.connection_date_new}"
 
     @property
     def last_activate_date(self):

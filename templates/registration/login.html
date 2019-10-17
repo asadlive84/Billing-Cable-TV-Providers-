@@ -39,8 +39,9 @@
         <div class="container">
             <div class="login-content">
                 <div class="login-logo">
-                    <a href="index.html">
-                        <img class="align-content" src="images/logo.png" alt="">
+                    <a href="{% url 'customer:home' %}">
+                        <img class="align-content" src="{% static 'images/logo.png' %}" alt="">
+                        Fulhata Cable Billing Admin
                     </a>
                 </div>
                 <div class="login-form">

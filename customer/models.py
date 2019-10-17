@@ -75,7 +75,7 @@ class Customer(models.Model):
     """
     customer_id = models.CharField('Customer ID',
                                    unique=True,
-                                   max_length=100,
+                                   max_length=6,
                                    default=str(get_random_string(length=6, allowed_chars='FDA1234567890'))
                                    )
     created_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
@@ -97,7 +97,7 @@ class Customer(models.Model):
         ordering = ('-created_at',)
 
     def __str__(self):
-        return str(self.name)
+        return f"{self.name} - {self.phone_number}"
 
     @property
     def customer_info(self):

@@ -129,5 +129,5 @@ STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = "user.CustomUser"
 
-LOGIN_REDIRECT_URL = 'customer:customer_list'
-LOGOUT_REDIRECT_URL = 'login'
+LOGIN_REDIRECT_URL = 'customer:home'
+LOGOUT_REDIRECT_URL = 'customer:home'

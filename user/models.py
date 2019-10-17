@@ -12,5 +12,5 @@ class CustomUser(AbstractUser):
     USERNAME_FIELD = 'phone_number'
     objects = CustomUserManager()
 
-
-
+    def __str__(self):
+        return f'{self.username} - {self.phone_number}'

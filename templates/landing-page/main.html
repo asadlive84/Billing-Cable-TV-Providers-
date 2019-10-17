@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Fulhata Dish Billing System, Fulhata Bazar">
+  <meta name="author" content="Asaduzzaman Sohel">
+
+  <title>Fulhata Dish Billing System</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'landing-page/vendor/bootstrap/css/bootstrap.min.css' %} " rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="{% static 'landing-page/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+  <link href="{% static 'landing-page/vendor/simple-line-icons/css/simple-line-icons.css' %}" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'landing-page/css/landing-page.min.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-light bg-light static-top">
+
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'customer:home' %}">Fulhata Dish Billing System</a>
+      {% if request.user.is_authenticated %}
+          <a class="btn btn-success" href="{% url 'customer:customer_list' %}"> Hello,  {{ request.user.username }}</a>
+          <a class="btn btn-danger" href="{% url 'logout' %}"> logout </a>
+      {% else %}
+            <a class="btn btn-primary" href="{% url 'login' %}">Sign In</a>
+      {% endif %}
+    </div>
+  </nav>
+
+  <!-- Masthead -->
+  <header class="masthead text-white text-center">
+    <div class="overlay"></div>
+    <div class="container">
+        {% if messages %}
+    {% for message in messages %}
+    <div class="alert  alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+
+        <span class="badge badge-pill badge-{{ message.tags }}"> {{ message.tags }} </span> {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+
+    </div>
+     {% endfor %}
+    {% endif %}
+      <div class="row">
+        <div class="col-xl-9 mx-auto">
+          <h1 class="mb-5">Check your bill right now! It is very Easy</h1>
+        </div>
+        <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+          <form method="post">
+              {% csrf_token %}
+            <div class="form-row">
+              <div class="col-12 col-md-9 mb-2 mb-md-0">
+                {{ form.phone_num_customer_id }}
+              </div>
+              <div class="col-12 col-md-3">
+                <button type="submit" class="btn btn-block btn-lg btn-primary">Check</button>
+              </div>
+            </div>
+          </form>
+
+            {% if c %}
+
+            <h3>Customer Name:  {{ c.name }}</h3>
+              <p>User Bill: {{ c.bill.user_has_bill }} {{ c.bill.billing_start_date }} {{ c.bill.bill_history }}</p>
+              <p>Due Bill: {{ c.bill.due_bill }}</p>
+              <p>Bill paid: {{ c.bill.user_bill_paid }}</p>
+
+            <p class="lead mb-0">
+                Mobile: {{ c.phone_number }}
+            </p>
+              <p>
+                Package: {{ c.package_name }}, Customer ID:{{ c.customer_id }}
+            </p>
+              <p>
+                Address: {{ c.word_union }}
+            </p>
+                <a style="color: white" href="{% url 'customer:home' %}">another search</a>
+            {% endif %}
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+
+
+
+  <!-- Testimonials -->
+  <section class="testimonials text-center bg-light">
+    <div class="container">
+      <h2 class="mb-5">What people are saying...</h2>
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+            <img class="img-fluid rounded-circle mb-3" src="{% static 'landing-page/img/testimonials-1.jpg'%}" alt="">
+            <h5>Margaret E.</h5>
+            <p class="font-weight-light mb-0">"This is fantastic! Thanks so much guys!"</p>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+            <img class="img-fluid rounded-circle mb-3" src="{% static 'landing-page/img/testimonials-2.jpg'%}" alt="">
+            <h5>Fred S.</h5>
+            <p class="font-weight-light mb-0">"Bootstrap is amazing. I've been using it to create lots of super nice landing pages."</p>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+            <img class="img-fluid rounded-circle mb-3" src="{% static 'landing-page/img/testimonials-3.jpg'%}" alt="">
+            <h5>Sarah W.</h5>
+            <p class="font-weight-light mb-0">"Thanks so much for making these free resources available to us!"</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- Footer -->
+  <footer class="footer bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+          <ul class="list-inline mb-2">
+            <li class="list-inline-item">
+              <a href="#">About</a>
+            </li>
+            <li class="list-inline-item">&sdot;</li>
+            <li class="list-inline-item">
+              <a href="#">Contact</a>
+            </li>
+            <li class="list-inline-item">&sdot;</li>
+            <li class="list-inline-item">
+              <a href="#">Terms of Use</a>
+            </li>
+            <li class="list-inline-item">&sdot;</li>
+            <li class="list-inline-item">
+              <a href="#">Privacy Policy</a>
+            </li>
+          </ul>
+
+          <p class="text-muted small mb-4 mb-lg-0">&copy; Fulhata Cable Vision 2019. All Rights Reserved.</p>
+          <p class="text-muted small mb-4 mb-lg-0">This Application develop by <a href="">Asaduzzaman Sohel</a></p>
+        </div>
+        <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
+          <ul class="list-inline mb-0">
+            <li class="list-inline-item mr-3">
+              <a href="#">
+                <i class="fab fa-facebook fa-2x fa-fw"></i>
+              </a>
+            </li>
+            <li class="list-inline-item mr-3">
+              <a href="#">
+                <i class="fab fa-twitter-square fa-2x fa-fw"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">
+                <i class="fab fa-instagram fa-2x fa-fw"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'landing-page/vendor/jquery/jquery.min.js'%} "></script>
+  <script src="{% static 'landing-page/vendor/bootstrap/js/bootstrap.bundle.min.js' %} "></script>
+
+</body>
+
+</html>
