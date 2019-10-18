@@ -34,6 +34,8 @@ class CreateCustomerForm(forms.ModelForm):
 
 
 class CreateInvoiceForm(forms.ModelForm):
+    custom_bill_date = forms.DateField()
+
     class Meta:
         model = Invoice
         fields = [

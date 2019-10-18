@@ -139,38 +139,37 @@ class Invoice(models.Model):
         super().save(*args, **kwargs)
 
     class Meta:
-        ordering = ('-created_at',)
+        ordering = ('-custom_bill_date',)
 
 
 @receiver(post_save, sender=Invoice)
 def bill_balance_saved(sender, instance, created=False, **kwargs):
-    get_bill_start_date = instance.bill.billing_start_date
     if created:
         '''
         Amount saved Bill instance objects
         '''
 
         # user has new connection then bill amount saved connection_bill field
-        if instance.invoice_type == '1':
-            instance.bill.connection_bill = instance.bill.connection_bill + instance.invoice_amount
-        else:
-            # all bill amount will be saved invoice_bill_collector of bill model
-            instance.bill.user_bill_paid = instance.bill.user_bill_paid + instance.invoice_amount
+        # if instance.invoice_type == '1':
+        #     instance.bill.connection_bill = instance.bill.connection_bill + instance.invoice_amount
+        # else:
+        #     # all bill amount will be saved invoice_bill_collector of bill model
+        instance.bill.user_bill_paid = instance.bill.user_bill_paid + instance.invoice_amount
 
         instance.bill.save()
 
 
-@receiver(post_save, sender=Invoice)
-def adjustment_saved(sender, instance, created=True, **kwargs):
-    get_bill_start_date = instance.bill.billing_start_date
-    day = get_bill_start_date.today() - get_bill_start_date
-    if not created and instance.adjustment > 0:
-        '''
-        Amount adjustment saved Bill instance objects
-        total day count and saved for Customer (Bill instance objects)
-        
-        '''
-        instance.bill.balance = instance.bill.balance - instance.adjustment
-        instance.bill.invoice_bill_collector = instance.bill.invoice_bill_collector - instance.invoice_amount
-        instance.bill.due_bill = round(instance.bill.total_bill - instance.bill.balance, 2)
-        instance.bill.save()
+# @receiver(post_save, sender=Invoice)
+# def adjustment_saved(sender, instance, created=True, **kwargs):
+#     get_bill_start_date = instance.bill.billing_start_date
+#     day = get_bill_start_date.today() - get_bill_start_date
+#     if not created and instance.adjustment > 0:
+#         '''
+#         Amount adjustment saved Bill instance objects
+#         total day count and saved for Customer (Bill instance objects)
+#
+#         '''
+#         instance.bill.balance = instance.bill.balance - instance.adjustment
+#         instance.bill.invoice_bill_collector = instance.bill.invoice_bill_collector - instance.invoice_amount
+#         instance.bill.due_bill = round(instance.bill.total_bill - instance.bill.balance, 2)
+#         instance.bill.save()

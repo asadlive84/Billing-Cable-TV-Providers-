@@ -126,7 +126,7 @@
                                                         {% for invoice in customer_invoice %}
                                                         <tr>
                                                             <td class="center">{{ forloop.counter }}</td>
-                                                            <td class="left strong">{{ invoice.custom_bill_date }} - {{ invoice.invoice_creator.name }}</td>
+                                                            <td class="left strong">{{ invoice.custom_bill_date }} - {{ invoice.invoice_creator }}</td>
                                                             <td class="left">{{ invoice.get_invoice_type_display }}</td>
 
 
@@ -238,7 +238,7 @@
                                     {% for invoice in customer_invoice %}
                                         <tr>
                                             <td><a href="">{{ invoice.invoice_id }}</a></td>
-                                            <td>{{ invoice.invoice_creator.name }}</td>
+                                            <td>{{ invoice.invoice_creator }}</td>
                                             <td>{{ invoice.get_invoice_type_display }}</td>
                                             <td>{{ invoice.invoice_amount }} - {{ invoice.custom_bill_date|date:'N y' }}</td>
                                             <td>

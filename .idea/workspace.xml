@@ -2,102 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ec526eb6-eb14-4760-9b00-2d1e6d72e376" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/css/landing-page.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/css/landing-page.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/img/bg-masthead.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/img/bg-showcase-1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/img/bg-showcase-2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/img/bg-showcase-3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/img/testimonials-1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/img/testimonials-2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/img/testimonials-3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/scss/_call-to-action.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/scss/_footer.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/scss/_global.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/scss/_icons.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/scss/_masthead.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/scss/_mixins.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/scss/_showcase.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/scss/_testimonials.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/scss/_variables.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/scss/landing-page.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/bootstrap/css/bootstrap-grid.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/bootstrap/css/bootstrap-grid.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/bootstrap/css/bootstrap-grid.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/bootstrap/css/bootstrap-grid.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/bootstrap/css/bootstrap-reboot.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/bootstrap/css/bootstrap-reboot.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/bootstrap/css/bootstrap-reboot.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/bootstrap/css/bootstrap-reboot.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/bootstrap/css/bootstrap.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/bootstrap/css/bootstrap.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/bootstrap/css/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/bootstrap/css/bootstrap.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/bootstrap/js/bootstrap.bundle.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/bootstrap/js/bootstrap.bundle.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/bootstrap/js/bootstrap.bundle.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/bootstrap/js/bootstrap.bundle.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/bootstrap/js/bootstrap.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/bootstrap/js/bootstrap.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/bootstrap/js/bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/bootstrap/js/bootstrap.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/fontawesome-free/css/all.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/fontawesome-free/css/all.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/fontawesome-free/css/brands.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/fontawesome-free/css/brands.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/fontawesome-free/css/fontawesome.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/fontawesome-free/css/fontawesome.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/fontawesome-free/css/regular.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/fontawesome-free/css/regular.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/fontawesome-free/css/solid.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/fontawesome-free/css/solid.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/fontawesome-free/css/svg-with-js.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/fontawesome-free/css/svg-with-js.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/fontawesome-free/css/v4-shims.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/fontawesome-free/css/v4-shims.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/fontawesome-free/webfonts/fa-brands-400.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/fontawesome-free/webfonts/fa-brands-400.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/fontawesome-free/webfonts/fa-brands-400.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/fontawesome-free/webfonts/fa-brands-400.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/fontawesome-free/webfonts/fa-brands-400.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/fontawesome-free/webfonts/fa-regular-400.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/fontawesome-free/webfonts/fa-regular-400.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/fontawesome-free/webfonts/fa-regular-400.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/fontawesome-free/webfonts/fa-regular-400.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/fontawesome-free/webfonts/fa-regular-400.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/fontawesome-free/webfonts/fa-solid-900.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/fontawesome-free/webfonts/fa-solid-900.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/fontawesome-free/webfonts/fa-solid-900.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/fontawesome-free/webfonts/fa-solid-900.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/fontawesome-free/webfonts/fa-solid-900.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/jquery/jquery.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/jquery/jquery.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/jquery/jquery.min.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/jquery/jquery.slim.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/jquery/jquery.slim.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/jquery/jquery.slim.min.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/simple-line-icons/css/simple-line-icons.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/simple-line-icons/fonts/Simple-Line-Icons.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/simple-line-icons/fonts/Simple-Line-Icons.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/simple-line-icons/fonts/Simple-Line-Icons.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/simple-line-icons/fonts/Simple-Line-Icons.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/landing-page/vendor/simple-line-icons/fonts/Simple-Line-Icons.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/landing-page/.browserslistrc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/landing-page/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/landing-page/.travis.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/landing-page/main.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0051_auto_20191019_0340.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0052_auto_20191019_0508.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0051_auto_20191019_0340.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0052_auto_20191019_0508.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/static/images/MPA JOB Circular-18.14.0158.125.02.319.19-1889.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/static/images/MPA JOB Circular-19-1889.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DishBilling/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/DishBilling/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DishBilling/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/DishBilling/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bill/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/bill/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/customer/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer/static/images/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/customer/static/images/logo.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/customer/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/customer/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/customers-template/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/customers-template/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/customers-template/create_invoice.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/customers-template/create_invoice.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/customers-template/customer_details.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/customers-template/customer_details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/landing-page/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/landing-page/main.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/registration/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/forms.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -172,7 +95,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/PycharmProjects/odoo13" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
@@ -263,7 +186,8 @@
       <workItem from="1571233694756" duration="3684000" />
       <workItem from="1571246982619" duration="231000" />
       <workItem from="1571255686409" duration="6367000" />
-      <workItem from="1571341363008" duration="11153000" />
+      <workItem from="1571341363008" duration="15473000" />
+      <workItem from="1571426416128" duration="9332000" />
     </task>
     <servers />
   </component>

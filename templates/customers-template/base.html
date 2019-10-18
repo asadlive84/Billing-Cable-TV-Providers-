@@ -232,7 +232,7 @@
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img class="user-avatar rounded-circle" src="{% static 'images/admin.jpg' %} " alt="User Avatar">
-                           {{ request.user.phone_number }}
+                           {{ request.user.username }} - {{ request.user.phone_number }}
                         </a>
 
                         <div class="user-menu dropdown-menu">
@@ -352,14 +352,14 @@
 
         var picker = new Pikaday({
             field: document.getElementById('id_custom_bill_date'),
-            format: 'D/M/YYYY',
+            format: 'YYYY-M-D',
             toString(date, format) {
                 // you should do formatting based on the passed format,
                 // but we will just return 'D/M/YYYY' for simplicity
                 const day = date.getDate();
                 const month = date.getMonth() + 1;
                 const year = date.getFullYear();
-                return `${day}/${month}/${year}`;
+                return `${year}-${month}-${day}`;
             },
             parse(dateString, format) {
                 // dateString is the result of `toString` method

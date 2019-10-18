@@ -10,8 +10,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sufee Admin - HTML5 Admin Template</title>
-    <meta name="description" content="Sufee Admin - HTML5 Admin Template">
+    <title>Admin login | Fulhata Dish Billing System</title>
+    <meta name="description" content="Fulhata Bazar, fulhata">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="apple-touch-icon" href="apple-icon.png">
@@ -37,6 +37,18 @@
 
     <div class="sufee-login d-flex align-content-center flex-wrap">
         <div class="container">
+        {% if messages %}
+    {% for message in messages %}
+    <div class="alert  alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+
+        <span class="badge badge-pill badge-{{ message.tags }}"> {{ message.tags }} </span> {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+
+    </div>
+     {% endfor %}
+    {% endif %}
             <div class="login-content">
                 <div class="login-logo">
                     <a href="{% url 'customer:home' %}">
@@ -45,10 +57,15 @@
                     </a>
                 </div>
                 <div class="login-form">
+                {% if form.errors %}
+                    <div class="alert alert-danger">
+                        Mobile number or password not correct
+                    </div>
+                {% endif %}
                     <form method="post">
                         {% csrf_token %}
                         <div class="form-group">
-                            <label for="{{ form.username.id_for_label }}">Phone Number </label>
+                            <label for="{{ form.username.id_for_label }}">Mobile Number </label>
                             {{ form.username }}
                             {% if field.errors %}
                             {{ field.errors }}

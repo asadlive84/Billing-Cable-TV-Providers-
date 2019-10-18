@@ -8,7 +8,7 @@ class UserLoginForm(AuthenticationForm):
         super(UserLoginForm, self).__init__(*args, **kwargs)
 
     username = forms.IntegerField(widget=forms.TextInput(
-        attrs={'class': 'form-control', 'placeholder': 'Mobile number'}))
+        attrs={'class': 'form-control', 'placeholder': 'Mobile number Ex 017....'}))
     password = forms.CharField(widget=forms.PasswordInput(
         attrs={
             'class': 'form-control',

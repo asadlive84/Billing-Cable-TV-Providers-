@@ -29,9 +29,11 @@
   <nav class="navbar navbar-light bg-light static-top">
 
     <div class="container">
-      <a class="navbar-brand" href="{% url 'customer:home' %}">Fulhata Dish Billing System</a>
+      <a class="navbar-brand" href="{% url 'customer:home' %}">ফুলহাতা ক্যাবল ভিশন</a>
       {% if request.user.is_authenticated %}
-          <a class="btn btn-success" href="{% url 'customer:customer_list' %}"> Hello,  {{ request.user.username }}</a>
+
+           <p>Hello,  {{ request.user.username }}</p>
+          <a class="btn btn-success" href="{% url 'customer:customer_list' %}">Dashboard</a>
           <a class="btn btn-danger" href="{% url 'logout' %}"> logout </a>
       {% else %}
             <a class="btn btn-primary" href="{% url 'login' %}">Sign In</a>
@@ -57,7 +59,7 @@
     {% endif %}
       <div class="row">
         <div class="col-xl-9 mx-auto">
-          <h1 class="mb-5">Check your bill right now! It is very Easy</h1>
+          <h2 class="mb-5">আপনার বিল সহজেই এখানে চেক করতে পারেন</h2>
         </div>
         <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
           <form method="post">
@@ -67,7 +69,7 @@
                 {{ form.phone_num_customer_id }}
               </div>
               <div class="col-12 col-md-3">
-                <button type="submit" class="btn btn-block btn-lg btn-primary">Check</button>
+                <button type="submit" class="btn btn-block btn-lg btn-primary">দেখুন</button>
               </div>
             </div>
           </form>
@@ -75,11 +77,26 @@
             {% if c %}
 
             <h3>Customer Name:  {{ c.name }}</h3>
-              <p>User Bill: {{ c.bill.user_has_bill }} {{ c.bill.billing_start_date }} {{ c.bill.bill_history }}</p>
-              <p>Due Bill: {{ c.bill.due_bill }}</p>
+
+                {% for invoice in c.bill.invoice_set.all %}
+               <ol>
+                {{ invoice.invoice_amount }}
+                {{ invoice.invoice_creator }}
+                {{ invoice.get_invoice_type_display }}
+                {{ invoice.custom_bill_date }}
+              </ol>
+
+                {% endfor %}
+
+              <p>User Bill: {{ c.bill.user_has_bill }} {{ c.bill.billing_start_date }} </p>
+              <p>Due Bill: {% if c.bill.due_bill_status %}
+              {{ c.bill.due_bill }}
+               {% else %}
+                No due
+              {% endif %}</p>
               <p>Bill paid: {{ c.bill.user_bill_paid }}</p>
 
-            <p class="lead mb-0">
+            <p>
                 Mobile: {{ c.phone_number }}
             </p>
               <p>
@@ -155,7 +172,7 @@
           </ul>
 
           <p class="text-muted small mb-4 mb-lg-0">&copy; Fulhata Cable Vision 2019. All Rights Reserved.</p>
-          <p class="text-muted small mb-4 mb-lg-0">This Application develop by <a href="">Asaduzzaman Sohel</a></p>
+          <p class="text-muted small mb-4 mb-lg-0">This Application develop by <a href="https://github.com/asadlive84">Asaduzzaman Sohel</a></p>
         </div>
         <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
           <ul class="list-inline mb-0">
