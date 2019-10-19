@@ -117,24 +117,28 @@ def create_invoices(request, customer_id):
         custom_bill_date = request.POST.get('custom_bill_date')
 
         custom_date_convert = datetime.strptime(custom_bill_date, "%Y-%m-%d").date()
-
-        if (form['invoice_type'].value() == '3' and
-            custom_date_convert > datetime.today().date()) or \
-                (form['invoice_type'].value() in ['0', '2'] and
-                 bill.due_bill < 0 and
-                 custom_date_convert <= datetime.today().date()) or \
-                form['invoice_type'].value() == '1':
-            if form.is_valid():
-                data = form.save(commit=False)
-                data.bill = bill
-                data.invoice_creator = request.user
-                data.custom_bill_date = custom_date_convert
-                data.save()
-                messages.success(request, f"Success, You created invoice for {data} TK. for {custom_date_convert}")
+        same_date_find = [x.custom_bill_date for x in bill.invoice_set.all() if x.custom_bill_date == custom_date_convert]
+        if not same_date_find and int(form['invoice_amount'].value()) >= 50:
+            if (form['invoice_type'].value() == '3' and
+                custom_date_convert > datetime.today().date()) or \
+                    (form['invoice_type'].value() in ['0', '2'] and
+                     bill.due_bill < 0 and
+                     custom_date_convert <= datetime.today().date()) or \
+                    form['invoice_type'].value() == '1':
+                if form.is_valid():
+                    data = form.save(commit=False)
+                    data.bill = bill
+                    data.invoice_creator = request.user
+                    data.custom_bill_date = custom_date_convert
+                    data.save()
+                    messages.success(request, f"Success, You created invoice for {data} TK. for {custom_date_convert}")
+                else:
+                    messages.warning(request, f"Data not valid Invoice didn't create {custom_date_convert}")
             else:
-                messages.warning(request, f"Data not valid Invoice didn't create {custom_date_convert}")
+                messages.warning(request, f"Invoice not created, please check again! Future Date/No Due")
+
         else:
-            messages.warning(request, f"Invoice not created, please check again! Future Date/No Due")
+            messages.warning(request, f"Invoice not created,  Same date found or minimum amount less than 50 TK")
     else:
         form = CreateInvoiceForm()
 

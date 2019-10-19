@@ -2,25 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ec526eb6-eb14-4760-9b00-2d1e6d72e376" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/bill/migrations/0051_auto_20191019_0340.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bill/migrations/0052_auto_20191019_0508.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/migrations/0051_auto_20191019_0340.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/migrations/0052_auto_20191019_0508.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/images/MPA JOB Circular-18.14.0158.125.02.319.19-1889.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/static/images/MPA JOB Circular-19-1889.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0053_auto_20191019_1258.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0053_auto_20191019_1258.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DishBilling/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/DishBilling/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bill/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/bill/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/static/images/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/customer/static/images/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/customer/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/customers-template/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/customers-template/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/customers-template/create_invoice.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/customers-template/create_invoice.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/customers-template/customer_details.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/customers-template/customer_details.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/landing-page/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/landing-page/main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/registration/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/forms.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -188,6 +174,7 @@
       <workItem from="1571255686409" duration="6367000" />
       <workItem from="1571341363008" duration="15473000" />
       <workItem from="1571426416128" duration="9332000" />
+      <workItem from="1571466295331" duration="4794000" />
     </task>
     <servers />
   </component>
