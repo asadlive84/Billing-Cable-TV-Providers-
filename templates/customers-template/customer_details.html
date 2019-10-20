@@ -109,6 +109,207 @@
 
                                             </div>
 
+                                               <table class="table table-bordered">
+                                                    <thead>
+                                                      <tr>
+                                                        <th>Month</th>
+                                                        <th>TK</th>
+
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    
+                                                      <tr>
+                                                        <td>January</td>
+                                                        <td>
+                                                            {% if months1 %}
+                                                            {% for month in months1 %}
+                                                            <ol>{{ month.invoice_amount }} - {{ month.get_invoice_type_display }}</ol>
+                                                            <ol>{{ month.invoice_creator }}</ol>
+                                                            {% endfor %}
+                                                            {% else %}
+                                                             unpaid
+                                                            {% endif %}
+                                                        </td>
+                                                      </tr>
+
+                                                      <tr>
+                                                        <td>Feb</td>
+                                                        <td>
+                                                            {% if months2 %}
+                                                            {% for month in months2 %}
+                                                            <ol>{{ month.invoice_amount }} - {{ month.get_invoice_type_display }}</ol>
+                                                            <ol>{{ month.invoice_creator }}</ol>
+                                                            {% endfor %}
+                                                            {% else %}
+                                                             unpaid
+                                                            {% endif %}
+                                                        </td>
+                                                      </tr>
+
+
+                                                      <tr>
+                                                        <td>March</td>
+                                                        <td>
+                                                            {% if months3 %}
+                                                            {% for month in months3 %}
+                                                            <ol>{{ month.invoice_amount }} - {{ month.get_invoice_type_display }}</ol>
+                                                            <ol>{{ month.invoice_creator }}</ol>
+                                                            {% endfor %}
+                                                            {% else %}
+                                                             unpaid
+                                                            {% endif %}
+                                                        </td>
+                                                      </tr>
+
+
+                                                      <tr>
+                                                        <td>April</td>
+                                                        <td>
+                                                            {% if months4 %}
+                                                            {% for month in months4 %}
+                                                            <ol>{{ month.invoice_amount }} - {{ month.get_invoice_type_display }}</ol>
+                                                            <ol>{{ month.invoice_creator }}</ol>
+                                                            {% endfor %}
+                                                            {% else %}
+                                                             unpaid
+                                                            {% endif %}
+                                                        </td>
+                                                      </tr>
+
+
+
+                                                      <tr>
+                                                        <td>March</td>
+                                                        <td>
+                                                            {% if months5 %}
+                                                            {% for month in months5 %}
+                                                            <ol>{{ month.invoice_amount }} - {{ month.get_invoice_type_display }}</ol>
+                                                            <ol>{{ month.invoice_creator }}</ol>
+                                                            {% endfor %}
+                                                            {% else %}
+                                                             unpaid
+                                                            {% endif %}
+                                                        </td>
+                                                      </tr>
+
+
+
+                                                      <tr>
+                                                        <td>June</td>
+                                                        <td>
+                                                            {% if months6 %}
+                                                            {% for month in months6 %}
+                                                            <ol>{{ month.invoice_amount }} - {{ month.get_invoice_type_display }}</ol>
+                                                            <ol>{{ month.invoice_creator }}</ol>
+                                                            {% endfor %}
+                                                            {% else %}
+                                                             unpaid
+                                                            {% endif %}
+                                                        </td>
+                                                      </tr>
+
+
+
+                                                      <tr>
+                                                        <td>July</td>
+                                                        <td>
+                                                            {% if months7 %}
+                                                            {% for month in months7 %}
+                                                            <ol>{{ month.invoice_amount }} - {{ month.get_invoice_type_display }}</ol>
+                                                            <ol>{{ month.invoice_creator }}</ol>
+                                                            {% endfor %}
+                                                            {% else %}
+                                                             unpaid
+                                                            {% endif %}
+                                                        </td>
+                                                      </tr>
+
+
+
+                                                      <tr>
+                                                        <td>August</td>
+                                                        <td>
+                                                            {% if months8 %}
+                                                            {% for month in months8 %}
+                                                            <ol>{{ month.invoice_amount }} - {{ month.get_invoice_type_display }}</ol>
+                                                            <ol>{{ month.invoice_creator }}</ol>
+                                                            {% endfor %}
+                                                            {% else %}
+                                                             unpaid
+                                                            {% endif %}
+                                                        </td>
+                                                      </tr>
+
+
+
+                                                      <tr>
+                                                        <td>September</td>
+                                                        <td>
+                                                            {% if months9 %}
+                                                            {% for month in months9 %}
+                                                            <ol>{{ month.invoice_amount }} - {{ month.get_invoice_type_display }}</ol>
+                                                            <ol>{{ month.invoice_creator }}</ol>
+                                                            {% endfor %}
+                                                            {% else %}
+                                                             unpaid
+                                                            {% endif %}
+                                                        </td>
+                                                      </tr>
+
+
+
+                                                      <tr>
+                                                        <td>October</td>
+                                                        <td>
+                                                            {% if months10 %}
+                                                            {% for month in months10 %}
+                                                            <ol>{{ month.invoice_amount }} - {{ month.get_invoice_type_display }}</ol>
+                                                            <ol>{{ month.invoice_creator }}</ol>
+                                                            {% endfor %}
+                                                            {% else %}
+                                                             unpaid
+                                                            {% endif %}
+                                                        </td>
+                                                      </tr>
+
+
+                                                      <tr>
+                                                        <td>November</td>
+                                                        <td>
+                                                            {% if months11 %}
+                                                            {% for month in months11 %}
+                                                            <ol>{{ month.invoice_amount }} - {{ month.get_invoice_type_display }}</ol>
+                                                            <ol>{{ month.invoice_creator }}</ol>
+                                                            {% endfor %}
+                                                            {% else %}
+                                                             unpaid
+                                                            {% endif %}
+                                                        </td>
+                                                      </tr>
+
+                                                    <tr>
+                                                        <td>December</td>
+                                                        <td>
+                                                            {% if months12 %}
+                                                            {% for month in months12 %}
+                                                            <ol>{{ month.invoice_amount }} - {{ month.get_invoice_type_display }}</ol>
+                                                            <ol>{{ month.invoice_creator }}</ol>
+                                                            {% endfor %}
+                                                            {% else %}
+                                                             unpaid
+                                                            {% endif %}
+                                                        </td>
+                                                      </tr>
+
+
+
+
+                                                    </tbody>
+
+                                                  </table>
+
+
                                             <div class="table-responsive-sm">
                                                 <table class="table table-striped">
                                                     <thead>
@@ -213,6 +414,7 @@
                             </section>
                         </aside>
                             </div>
+
 
 
 

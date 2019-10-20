@@ -5,6 +5,10 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 # from django.utils.datetime_safe import datetime
 from datetime import datetime, timedelta
+import calendar
+
+from django.utils import timezone
+
 from customer.models import Customer
 from bill.models import Bill, Invoice, BillHistory
 from customer.forms import \
@@ -64,6 +68,24 @@ def customer_details(request, slug):
         days=customer.package_name.month_cycle)
     customer_invoice = Invoice.objects.filter(bill=b).order_by('-custom_bill_date')
     total_cycle = round(b.total_day / b.customer.package_name.month_cycle, 1)
+
+    '''
+        Month Cal
+    '''
+
+    months1 = b.invoice_set.filter(custom_bill_date__year=timezone.now().year, custom_bill_date__month=1)
+    months2 = b.invoice_set.filter(custom_bill_date__year=timezone.now().year, custom_bill_date__month=2)
+    months3 = b.invoice_set.filter(custom_bill_date__year=timezone.now().year, custom_bill_date__month=3)
+    months4 = b.invoice_set.filter(custom_bill_date__year=timezone.now().year, custom_bill_date__month=4)
+    months5 = b.invoice_set.filter(custom_bill_date__year=timezone.now().year, custom_bill_date__month=5)
+    months6 = b.invoice_set.filter(custom_bill_date__year=timezone.now().year, custom_bill_date__month=6)
+    months7 = b.invoice_set.filter(custom_bill_date__year=timezone.now().year, custom_bill_date__month=7)
+    months8 = b.invoice_set.filter(custom_bill_date__year=timezone.now().year, custom_bill_date__month=8)
+    months9 = b.invoice_set.filter(custom_bill_date__year=timezone.now().year, custom_bill_date__month=9)
+    months10 = b.invoice_set.filter(custom_bill_date__year=timezone.now().year, custom_bill_date__month=10)
+    months11 = b.invoice_set.filter(custom_bill_date__year=timezone.now().year, custom_bill_date__month=11)
+    months12 = b.invoice_set.filter(custom_bill_date__year=timezone.now().year, custom_bill_date__month=12)
+
     context = {'customer': customer,
                'customer_invoice': customer_invoice,
                'next_bill_end_date': next_bill_end_date,
@@ -71,6 +93,18 @@ def customer_details(request, slug):
                'total_cycle': total_cycle,
                'last_activate_date': last_activate_date,
                'last_activate_month': last_activate_month,
+               'months1': months1,
+               'months2': months2,
+               'months3': months3,
+               'months4': months4,
+               'months5': months5,
+               'months6': months6,
+               'months7': months7,
+               'months8': months8,
+               'months9': months9,
+               'months10': months10,
+               'months11': months11,
+               'months12': months12,
                }
     return render(request, 'customers-template/customer_details.html', context)
 
@@ -117,7 +151,8 @@ def create_invoices(request, customer_id):
         custom_bill_date = request.POST.get('custom_bill_date')
 
         custom_date_convert = datetime.strptime(custom_bill_date, "%Y-%m-%d").date()
-        same_date_find = [x.custom_bill_date for x in bill.invoice_set.all() if x.custom_bill_date == custom_date_convert]
+        same_date_find = [x.custom_bill_date for x in bill.invoice_set.all() if
+                          x.custom_bill_date == custom_date_convert]
         if not same_date_find and int(form['invoice_amount'].value()) >= 50:
             if (form['invoice_type'].value() == '3' and
                 custom_date_convert > datetime.today().date()) or \

@@ -2,11 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ec526eb6-eb14-4760-9b00-2d1e6d72e376" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/bill/migrations/0053_auto_20191019_1258.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/migrations/0053_auto_20191019_1258.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0054_auto_20191021_0235.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0055_auto_20191021_0235.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0056_auto_20191021_0300.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0054_auto_20191021_0235.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0055_auto_20191021_0235.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0056_auto_20191021_0300.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/signup.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/migrations/0004_auto_20191021_0235.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/migrations/0005_auto_20191021_0300.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bill/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/bill/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DishBilling/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/DishBilling/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DishBilling/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/DishBilling/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer/static/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/customer/static/assets/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer/static/assets/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/customer/static/assets/js/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/customer/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/customers-template/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/customers-template/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/customers-template/customer_details.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/customers-template/customer_details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/registration/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -174,7 +191,9 @@
       <workItem from="1571255686409" duration="6367000" />
       <workItem from="1571341363008" duration="15473000" />
       <workItem from="1571426416128" duration="9332000" />
-      <workItem from="1571466295331" duration="4794000" />
+      <workItem from="1571466295331" duration="5149000" />
+      <workItem from="1571574312341" duration="8170000" />
+      <workItem from="1571598314339" duration="10032000" />
     </task>
     <servers />
   </component>

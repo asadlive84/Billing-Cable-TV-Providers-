@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'customer.apps.CustomerConfig',  # Customer(Client) app
     'bill.apps.BillConfig',  # Bill app
     'rest_framework',
+    'crispy_forms',
     # 'corsheaders',
 
 ]
@@ -131,3 +132,5 @@ AUTH_USER_MODEL = "user.CustomUser"
 
 LOGIN_REDIRECT_URL = 'customer:home'
 LOGOUT_REDIRECT_URL = 'customer:home'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

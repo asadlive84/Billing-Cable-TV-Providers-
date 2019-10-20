@@ -20,10 +20,14 @@ from django.conf.urls.static import static
 from django.contrib.auth import views, login
 
 from user.forms import UserLoginForm
+from user.views import sign_up_form
 
 urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('', include('customer.urls')),
                   path('accounts/', include('django.contrib.auth.urls')),
-                  path('accounts/', views.LoginView.as_view(template_name="registration/login.html",authentication_form=UserLoginForm),name="login",),
+                  path('regi/', sign_up_form, name="sign_up"),
+
+                  path('accounts/', views.LoginView.as_view(template_name="registration/login.html",
+                                                            authentication_form=UserLoginForm), name="login", ),
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

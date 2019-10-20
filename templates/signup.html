@@ -1,0 +1,94 @@
+<!doctype html>
+{% load static %}
+{% load crispy_forms_tags %}
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Sufee Admin - HTML5 Admin Template</title>
+    <meta name="description" content="Sufee Admin - HTML5 Admin Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="apple-icon.png">
+    <link rel="shortcut icon" href="favicon.ico">
+
+
+    <link rel="stylesheet" href="{% static 'vendors/bootstrap/dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendors/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendors/themify-icons/css/themify-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'vendors/flag-icon-css/css/flag-icon.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendors/selectFX/css/cs-skin-elastic.css' %}">
+
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+
+
+
+</head>
+
+{% if request.user.is_authenticated %}
+
+<div class="register-link m-t-15 text-center">
+                            <p>Already You signed in <a href="{% url 'customer:home' %}"> Home</a></p>
+                        </div>
+{% else %}
+
+<body class="bg-dark">
+
+
+    <div class="sufee-login d-flex align-content-center flex-wrap">
+        <div class="container">
+            <div class="login-content">
+                <div class="login-logo">
+                    <a href="{% url 'customer:home' %}">
+                        <img class="align-content" src="{% static  'images/logo.png' %}" alt="">
+                    </a>
+                </div>
+                 {% if messages %}
+    {% for message in messages %}
+    <div class="alert  alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+
+        <span class="badge badge-pill badge-{{ message.tags }}"> {{ message.tags }} </span> {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+
+    </div>
+     {% endfor %}
+    {% endif %}
+                <div class="login-form">
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form | crispy }}
+
+                        <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Register</button>
+
+                        <div class="register-link m-t-15 text-center">
+                            <p>Already have account ? <a href="{% url 'login' %}"> Sign in</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endif %}
+
+
+    <script src="{% static 'vendors/jquery/dist/jquery.min.js'%}"></script>
+    <script src="{% static 'vendors/popper.js/dist/umd/popper.min.js' %}"></script>
+    <script src="{% static 'vendors/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+
+
+</body>
+
+</html>
