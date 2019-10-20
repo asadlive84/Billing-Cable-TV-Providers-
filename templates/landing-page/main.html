@@ -33,7 +33,12 @@
       {% if request.user.is_authenticated %}
 
            <p>Hello,  {{ request.user.username }}</p>
+          {% if perms.customer.view_customer %}
           <a class="btn btn-success" href="{% url 'customer:customer_list' %}">Dashboard</a>
+          {% else %}
+          You've no access
+          {% endif %}
+
           <a class="btn btn-danger" href="{% url 'logout' %}"> logout </a>
       {% else %}
             <a class="btn btn-primary" href="{% url 'login' %}">Sign In</a>

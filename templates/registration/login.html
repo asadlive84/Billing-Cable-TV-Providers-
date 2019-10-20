@@ -33,7 +33,7 @@
 </head>
 
 {% if request.user.is_authenticated %}
- <p>Are you trying to access log in page ? <a href="{% url 'customer:home' %}">You're already logged in</a></p>
+ <h3>sorry! You've no permission! Contact your site admin <a href="{% url 'customer:home' %}">Homepage</a></h3>
 
 
 {% else %}

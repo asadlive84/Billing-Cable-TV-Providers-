@@ -158,7 +158,6 @@ def bill_balance_saved(sender, instance, created=False, **kwargs):
 
         instance.bill.save()
 
-
 # @receiver(post_save, sender=Invoice)
 # def adjustment_saved(sender, instance, created=True, **kwargs):
 #     get_bill_start_date = instance.bill.billing_start_date

@@ -6,8 +6,10 @@ from django.urls import reverse
 # from django.utils.datetime_safe import datetime
 from datetime import datetime, timedelta
 import calendar
-
+from django.contrib.auth.models import Permission, User
+from django.contrib.contenttypes.models import ContentType
 from django.utils import timezone
+from django.contrib.auth.decorators import permission_required
 
 from customer.models import Customer
 from bill.models import Bill, Invoice, BillHistory
@@ -48,12 +50,14 @@ def home_page(request):
     return render(request, 'landing-page/main.html', {'form': form, 'c': c})
 
 
+@permission_required('customer.view_customer')
 @login_required()
 def customer_list(request):
     customers = Customer.objects.all()
     return render(request, 'customers-template/customer_list.html', {'customers': customers})
 
 
+@permission_required('customer.view_customer')
 @login_required(redirect_field_name='/')
 def customer_details(request, slug):
     customer = get_object_or_404(Customer, slug=slug)
@@ -109,6 +113,7 @@ def customer_details(request, slug):
     return render(request, 'customers-template/customer_details.html', context)
 
 
+@permission_required('customer.add_customer')
 @login_required()
 def create_customer(request):
     forms = CreateCustomerForm()
@@ -138,6 +143,7 @@ def edit_customer(request, slug):
     return render(request, 'customers-template/customer_edit.html', {'customer': customer})
 
 
+@permission_required('invoice.can_add')
 @login_required()
 def create_invoices(request, customer_id):
     from django.utils import timezone
@@ -180,6 +186,7 @@ def create_invoices(request, customer_id):
     return render(request, 'customers-template/create_invoice.html', {'form': form, 'customer': customer})
 
 
+@permission_required('package.add_package')
 @login_required()
 def create_package(request):
     form = CreatePackageForm()
@@ -199,6 +206,7 @@ def create_package(request):
     return render(request, 'customers-template/create_package.html', {'form': form})
 
 
+@permission_required('union.add_union')
 @login_required()
 def create_union(request):
     form = CreateUnionForm()
@@ -213,6 +221,7 @@ def create_union(request):
     return render(request, 'customers-template/create_union.html', {'form': form})
 
 
+@permission_required('word.add_word')
 @login_required()
 def create_word(request):
     form = CreateWordForm()

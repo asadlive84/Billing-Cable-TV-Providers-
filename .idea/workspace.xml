@@ -2,28 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ec526eb6-eb14-4760-9b00-2d1e6d72e376" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/bill/migrations/0054_auto_20191021_0235.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bill/migrations/0055_auto_20191021_0235.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bill/migrations/0056_auto_20191021_0300.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/migrations/0054_auto_20191021_0235.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/migrations/0055_auto_20191021_0235.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/migrations/0056_auto_20191021_0300.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/signup.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/migrations/0004_auto_20191021_0235.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/migrations/0005_auto_20191021_0300.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0057_auto_20191021_0400.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0057_auto_20191021_0400.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/migrations/0006_auto_20191021_0400.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DishBilling/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/DishBilling/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DishBilling/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/DishBilling/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/static/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/customer/static/assets/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/static/assets/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/customer/static/assets/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bill/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/bill/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/customer/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/customers-template/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/customers-template/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/customers-template/customer_details.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/customers-template/customer_details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/landing-page/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/landing-page/main.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/registration/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -45,32 +33,29 @@
     <expand>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="Django default" type="feb32156:DbDataSourceImpl" />
+        <item name="db.sqlite3" type="feb32156:DbDataSourceImpl" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="Django default" type="feb32156:DbDataSourceImpl" />
+        <item name="db.sqlite3" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="Django default" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="Django default" type="feb32156:DbDataSourceImpl" />
+        <item name="db.sqlite3" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
-        <item name="customer_customer: table" type="3d80ac25:SqliteImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="db.sqlite3" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
+        <item name="auth_permission: table" type="3d80ac25:SqliteImplModel$Table" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="Django default" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
-        <item name="customer_package: table" type="3d80ac25:SqliteImplModel$Table" />
       </path>
     </expand>
     <select />
@@ -95,6 +80,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="sqlite" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -149,7 +135,27 @@
     <option name="allServicesViewState">
       <serviceView>
         <treeState>
-          <expand />
+          <expand>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@e4783533" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@e4783533" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@78e43bb0" type="9fbbdea:ServiceModel$ServiceNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@e4783533" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@7a527c4e" type="9fbbdea:ServiceModel$ServiceNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@e4783533" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@4484834" type="9fbbdea:ServiceModel$ServiceNode" />
+            </path>
+          </expand>
           <select />
         </treeState>
       </serviceView>
@@ -193,7 +199,7 @@
       <workItem from="1571426416128" duration="9332000" />
       <workItem from="1571466295331" duration="5149000" />
       <workItem from="1571574312341" duration="8170000" />
-      <workItem from="1571598314339" duration="10032000" />
+      <workItem from="1571598314339" duration="12581000" />
     </task>
     <servers />
   </component>

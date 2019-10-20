@@ -1,6 +1,9 @@
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser, UserManager
+from django.contrib.auth.models import Permission
+from django.contrib.contenttypes.models import ContentType
+from bill.models import Invoice
 
 
 class CustomUserManager(UserManager):
@@ -19,5 +22,5 @@ class CustomUser(AbstractUser):
         return f'{self.username} - {self.phone_number}'
 
 
-class User(models.Model):
-    pass
+class CustomUserPermission(models.Model):
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
