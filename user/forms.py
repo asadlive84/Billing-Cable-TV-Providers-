@@ -19,11 +19,11 @@ class UserLoginForm(AuthenticationForm):
 
 
 class CustomUserCreationForm(UserCreationForm):
-    phone_number = forms.IntegerField(required=True)
-
+    phone_number = forms.IntegerField(required=True, help_text="Type you phone number BD format 01712123456")
+    full_name = forms.CharField(max_length=100, help_text="Type your Full Name")
     class Meta:
         model = CustomUser
-        fields = ('full_name', 'phone_number', 'username',)
+        fields = ('full_name', 'phone_number',)
 
     # def clean_phone_number(self):
     #     pattern = '(^[01]{1,2})([13456789]{1})(\d{2})(\d{6})$'

@@ -1,5 +1,10 @@
 from django.contrib.auth import authenticate, login
-from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import permission_required
+from django.http import HttpResponseRedirect, HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse
+
+from bill.models import Invoice
 from user.models import CustomUser
 from user.forms import CustomUserCreationForm
 import re
@@ -26,16 +31,17 @@ def sign_up_form(request):
 
                         user = authenticate(phone_number=data.phone_number, password=raw_password)
                         login(request, user)
-                        return redirect('customer:home')
 
                         messages.success(request, "User has been successfully created!!")
+
+                        return HttpResponseRedirect(reverse('user_details', args=[user.pk]))
 
                     else:
                         messages.warning(request, "User not created!!")
                 else:
                     messages.warning(request, f"Phone number and password can't be same")
             except Exception as e:
-                messages.warning(request, f"Phone number Format isn't correct!")
+                messages.warning(request, f"Phone number Format isn't correct! format 01712123456")
         else:
             form = CustomUserCreationForm()
 
@@ -43,3 +49,18 @@ def sign_up_form(request):
 
     else:
         return redirect('customer:home')
+
+
+@permission_required('customuser.view_customuser')
+def user_list(request):
+    users = CustomUser.objects.all()
+    return render(request, 'customers-template/user_list.html', {'users': users})
+
+
+@permission_required('customuser.view_customuser')
+def user_details(request, pk):
+    user = get_object_or_404(CustomUser, pk=pk)
+
+    customer_invoice = Invoice.objects.filter(invoice_creator=user)
+    return render(request, 'customers-template/user_details.html', {'user': user, 'customer_invoice': customer_invoice})
+

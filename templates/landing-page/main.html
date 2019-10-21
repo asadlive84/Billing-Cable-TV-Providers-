@@ -32,11 +32,11 @@
       <a class="navbar-brand" href="{% url 'customer:home' %}">ফুলহাতা ক্যাবল ভিশন</a>
       {% if request.user.is_authenticated %}
 
-           <p>Hello,  {{ request.user.username }}</p>
+           <p>Hello,  {{ request.user.full_name }}</p>
           {% if perms.customer.view_customer %}
           <a class="btn btn-success" href="{% url 'customer:customer_list' %}">Dashboard</a>
           {% else %}
-          You've no access
+          <a class="btn btn-success" href="{% url 'user_details' request.user.id%}">Your Dashboard</a>
           {% endif %}
 
           <a class="btn btn-danger" href="{% url 'logout' %}"> logout </a>

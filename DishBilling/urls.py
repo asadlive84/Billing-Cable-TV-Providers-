@@ -18,7 +18,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views, login
-
+from user.views import user_list, user_details
 from user.forms import UserLoginForm
 from user.views import sign_up_form
 
@@ -27,6 +27,8 @@ urlpatterns = [
                   path('', include('customer.urls')),
                   path('accounts/', include('django.contrib.auth.urls')),
                   path('regi/', sign_up_form, name="sign_up"),
+                  path('user_list/', user_list, name="user_list"),
+                  path('user_details/<int:pk>/', user_details, name="user_details"),
 
                   path('accounts/', views.LoginView.as_view(template_name="registration/login.html",
                                                             authentication_form=UserLoginForm), name="login", ),

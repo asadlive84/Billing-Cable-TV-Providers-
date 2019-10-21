@@ -5,7 +5,7 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 # from django.utils.datetime_safe import datetime
 from datetime import datetime, timedelta
-import calendar
+import re
 from django.contrib.auth.models import Permission, User
 from django.contrib.contenttypes.models import ContentType
 from django.utils import timezone
@@ -116,18 +116,25 @@ def customer_details(request, slug):
 @permission_required('customer.add_customer')
 @login_required()
 def create_customer(request):
-    forms = CreateCustomerForm()
+    phone_regex_pattern = '(^[01]{1,2})([13456789]{1})(\d{2})(\d{6})$'
 
     if request.method == 'POST':
         forms = CreateCustomerForm(request.POST, request.FILES)
-        if forms.is_valid():
-            customers = forms.save(commit=False)
-            customers.created_user = request.user
-            customers.save()
-            messages.success(request, 'Customer Profile has been created successfully.')
-            return HttpResponseRedirect(reverse('customer:customer_list'))
-        else:
-            messages.warning(request, 'Sorry, profile didn\'t create, duplicate mobile number isn\'t allowed')
+        phone_number = forms['phone_number'].value()
+        try:
+            if forms.is_valid():
+
+                phone_regex_match = re.match(phone_regex_pattern, phone_number)
+                customers = forms.save(commit=False)
+                customers.created_user = request.user
+                customers.phone_number = int(phone_regex_match[0])
+                customers.save()
+                messages.success(request, 'Customer Profile has been created successfully.')
+                return HttpResponseRedirect(reverse('customer:customer_list'))
+            else:
+                messages.warning(request, 'Sorry, profile didn\'t create, duplicate mobile number isn\'t allowed')
+        except Exception as e:
+            messages.warning(request, 'Mobile number not valid')
 
     else:
         forms = CreateCustomerForm()
