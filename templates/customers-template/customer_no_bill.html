@@ -1,0 +1,102 @@
+{% extends 'customers-template/base.html' %}
+{% load static %}
+{% block title %}
+{{ customer.name }} Profile
+{% endblock %}
+{% block content %}
+
+
+
+        <div class="breadcrumbs">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Customer: <b><a href="{% url 'customer:customer_details_edit' customer.slug %}">Edit</a>{{ customer.name }}</b> ID: <i>{{ customer.customer_id }}</i> </h1>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="{% url 'customer:customer_list' %}">Customer List</a></li>
+
+                            <li class="active">{{ customer.name }}</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content mt-3">
+            <div class="animated fadeIn">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="card">
+
+                            <div class="card-body">
+                                <aside class="profile-nav alt">
+                                    <section class="card">
+                                        <div class="card-header user-header alt bg-dark">
+                                            <div class="media">
+                                                <a href="#">
+                                                    <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt="" src="{% static 'images/admin.jpg' %} ">
+                                                </a>
+                                                <div class="media-body">
+                                                    <h2 class="text-light display-6">{{ customer.name }}
+                                                    {% if customer.bill.due_bill_status %}
+                                                    <span class="badge badge-danger pull-right"> Due {{ customer.bill.due_bill }} TK</span>
+                                                    {% else %}
+                                                    <span class="badge badge-success pull-right"> No Due</span>
+                                                    {% endif %}
+                                                    </h2>
+                                                    <p>{{ customer.word_union }}</p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
+
+                            </section>
+                        </aside>
+                            </div>
+
+
+
+
+
+
+                        <div class="card-header">
+
+                                <strong class="card-title">
+                                <a href="{% url 'customer:create_bill' customer.slug%}">Create Bill</a>
+                                    </strong>
+                            </div>
+                            <button class="alert-danger"><a href="">You are not created any bill for this user</a></button>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div><!-- .animated -->
+        </div><!-- .content -->
+
+
+    </div><!-- /#right-panel -->
+
+{% endblock %}
+
+
+
+
+</body>
+
+</html>

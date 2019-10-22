@@ -7,6 +7,14 @@ from django.dispatch import receiver
 from django.utils import timezone
 from datetime import datetime, timedelta
 
+ACTIVE = '1'
+INACTIVE = '0'
+
+BILL_STATUS = [
+    (INACTIVE, 'Inactive'),
+    (ACTIVE, 'Active'),
+]
+
 DUE_BILL = '0'
 NEW_CONNECTION = '1'
 CURRENT_BILL = '2'
@@ -42,10 +50,17 @@ class BillHistory(models.Model):
 
     def save(self, *args, **kwargs):
         # start with version 1 and increment it for each bill
+
+        if self.bill.connection_date_end:
+            self.connection_date_end = self.bill.connection_date_end
+
         current_date_version = BillHistory.objects.filter(bill=self.bill).order_by('-date_version')[:1]
         self.date_version = current_date_version[0].date_version + 1 if current_date_version else 1
         # days and bill calculate from new connection date
-        self.total_days = round((timezone.now().date() - self.connection_date_new).days, 1)
+        if self.connection_date_end:
+            self.total_days = round((self.connection_date_end - self.connection_date_new).days, 1)
+        else:
+            self.total_days = round((timezone.now().date() - self.connection_date_new).days, 1)
 
         self.user_new_bill = round(
             sum([i.bill.customer.package_name.per_day_amount for i in current_date_version]) * self.total_days, 2)
@@ -60,7 +75,9 @@ class Bill(models.Model):
                                default=get_random_string(length=6, allowed_chars="ACY23456PKLW"))
     bill_creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
     customer = models.OneToOneField(Customer, on_delete=models.SET_NULL, null=True, db_index=True)
-    billing_start_date = models.DateField()
+    billing_start_date = models.DateField(blank=True)
+    connection_date_end = models.DateField(blank=True, null=True)
+    bill_status = models.CharField(choices=BILL_STATUS, default=ACTIVE, max_length=1)
     balance = models.FloatField(default=0)
     due_bill_status = models.BooleanField('Due Status', default=True)
     due_bill = models.FloatField(default=0, blank=True)
@@ -91,7 +108,16 @@ class Bill(models.Model):
 
     def save(self, *args, **kwargs):
         self.balance = self.connection_bill + self.user_bill_paid
-        self.total_day = (timezone.now().date() - self.billing_start_date).days
+        if not self.billing_start_date:
+            self.billing_start_date = timezone.now().date()
+
+        if self.bill_status == '0':
+            self.connection_date_end = timezone.now().date()
+            self.total_day = (self.connection_date_end - self.billing_start_date).days
+        else:
+            self.connection_date_end = None
+            self.total_day = (timezone.now().date() - self.billing_start_date).days
+
         self.last_total_day_for_new_date = self.days_history()
         self.last_user_has_bill = self.last_user_bill()
         self.user_has_bill = round(
@@ -105,8 +131,13 @@ class Bill(models.Model):
         super().save(*args, **kwargs)
 
         bill_history = self.bill_history()
-        if not bill_history or self.billing_start_date != bill_history[0].connection_date_new:
-            new_bill_date_history = BillHistory(bill=self, connection_date_new=self.billing_start_date)
+        if not bill_history or self.billing_start_date != bill_history[0].connection_date_new or self.connection_date_end:
+            new_bill_date_history = BillHistory(bill=self,
+                                                connection_date_new=self.billing_start_date,
+                                                connection_date_end=self.connection_date_end
+                                                )
+
+            print(f"Hello Dear {new_bill_date_history.connection_date_end}")
             new_bill_date_history.save()
 
 

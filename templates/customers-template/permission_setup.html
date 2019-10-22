@@ -1,0 +1,101 @@
+{% extends 'customers-template/base.html' %}
+{% load static %}
+{% block title %}
+{{ user.name }} Profile
+{% endblock %}
+{% block content %}
+
+
+
+        <div class="breadcrumbs">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Customer: <b><a href="">Edit</a>{{ user.full_name }}</b>  </h1>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="{% url 'user_list' %}">User List</a></li>
+
+                            <li class="">Permission</li>
+                            <li class="active">{{ user.full_name }}</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content mt-3">
+            <div class="animated fadeIn">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="card">
+
+                            <div class="card-body">
+                                <aside class="profile-nav alt">
+                                    <section class="card">
+                                        <div class="card-header user-header alt bg-dark">
+                                            <div class="media">
+                                                <a href="#">
+                                                    <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt="" src="{% static 'images/admin.jpg' %} ">
+                                                </a>
+                                                <div class="media-body">
+                                                    <h2 class="text-light display-6">{{ user.full_name }}
+
+                                                    </h2>
+                                                    <p>{{ user.phone_number }}</p>
+                                                    <p>Last logged in {{ user.last_login }}</p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
+
+                            </section>
+                        </aside>
+                            </div>
+
+
+
+
+
+
+                        <div class="card-header">
+
+                                <strong class="card-title">All Permission List</strong>
+
+                            </div>
+                             <div class="card-body">
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div><!-- .animated -->
+        </div><!-- .content -->
+
+
+    </div><!-- /#right-panel -->
+
+{% endblock %}
+
+
+
+
+</body>
+
+</html>

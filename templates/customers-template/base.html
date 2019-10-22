@@ -68,7 +68,7 @@
                             <li><i class="fa fa-table"></i><a href="{% url 'customer:create_union' %}">Create Union</a></li>
                             <li><i class="fa fa-table"></i><a href="{% url 'customer:create_word' %}">Create Word</a></li>
                             <li><i class="fa fa-table"></i><a href="{% url 'customer:create_customer' %}">Create Customer</a></li>
-                            <li><i class="fa fa-table"></i><a href="{% url 'customer:create_bill' %}">Create Bill</a></li>
+
 
                         </ul>
                     </li>
@@ -315,6 +315,68 @@
 
         var picker = new Pikaday({
             field: document.getElementById('id_custom_bill_date'),
+            format: 'YYYY-M-D',
+            toString(date, format) {
+                // you should do formatting based on the passed format,
+                // but we will just return 'D/M/YYYY' for simplicity
+                const day = date.getDate();
+                const month = date.getMonth() + 1;
+                const year = date.getFullYear();
+                return `${year}-${month}-${day}`;
+            },
+            parse(dateString, format) {
+                // dateString is the result of `toString` method
+                const parts = dateString.split('/');
+                const day = parseInt(parts[0], 10);
+                const month = parseInt(parts[1], 10) - 1;
+                const year = parseInt(parts[2], 10);
+                return new Date(year, month, day);
+            }
+        });
+
+        var picker = new Pikaday({
+            field: document.getElementById('id_custom_bill_date1'),
+            format: 'YYYY-M-D',
+            toString(date, format) {
+                // you should do formatting based on the passed format,
+                // but we will just return 'D/M/YYYY' for simplicity
+                const day = date.getDate();
+                const month = date.getMonth() + 1;
+                const year = date.getFullYear();
+                return `${year}-${month}-${day}`;
+            },
+            parse(dateString, format) {
+                // dateString is the result of `toString` method
+                const parts = dateString.split('/');
+                const day = parseInt(parts[0], 10);
+                const month = parseInt(parts[1], 10) - 1;
+                const year = parseInt(parts[2], 10);
+                return new Date(year, month, day);
+            }
+        });
+        var picker = new Pikaday({
+            field: document.getElementById('id_custom_bill_date2'),
+            format: 'YYYY-M-D',
+            toString(date, format) {
+                // you should do formatting based on the passed format,
+                // but we will just return 'D/M/YYYY' for simplicity
+                const day = date.getDate();
+                const month = date.getMonth() + 1;
+                const year = date.getFullYear();
+                return `${year}-${month}-${day}`;
+            },
+            parse(dateString, format) {
+                // dateString is the result of `toString` method
+                const parts = dateString.split('/');
+                const day = parseInt(parts[0], 10);
+                const month = parseInt(parts[1], 10) - 1;
+                const year = parseInt(parts[2], 10);
+                return new Date(year, month, day);
+            }
+        });
+
+        var picker = new Pikaday({
+            field: document.getElementById('id_billing_start_date'),
             format: 'YYYY-M-D',
             toString(date, format) {
                 // you should do formatting based on the passed format,

@@ -16,10 +16,11 @@ class CustomUser(AbstractUser):
     is_staff = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'phone_number'
+    REQUIRED_FIELDS = ['full_name', ]
     objects = CustomUserManager()
 
     def __str__(self):
-        return f'{self.username} - {self.phone_number}'
+        return f'{self.full_name} - {self.phone_number}'
 
 
 class CustomUserPermission(models.Model):

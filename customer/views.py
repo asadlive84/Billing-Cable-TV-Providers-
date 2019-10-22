@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 # from django.utils.datetime_safe import datetime
@@ -62,55 +62,61 @@ def customer_list(request):
 def customer_details(request, slug):
     customer = get_object_or_404(Customer, slug=slug)
     # b = Bill.objects.get(customer=customer)
-    b = get_object_or_404(Bill, customer=customer)
-    last_activate = BillHistory.objects.filter(bill=b).order_by('-created_at')[:1]
-    last_activate_date = sum([x.total_days for x in last_activate])
-    last_activate_month = round(sum([x.total_days for x in last_activate]) / customer.package_name.month_cycle, 2)
-    next_bill_end_date = b.billing_start_date + timedelta(
-        days=customer.package_name.month_cycle + customer.package_name.month_cycle)
-    current_bill_end_date = b.billing_start_date + timedelta(
-        days=customer.package_name.month_cycle)
-    customer_invoice = Invoice.objects.filter(bill=b).order_by('-custom_bill_date')
-    total_cycle = round(b.total_day / b.customer.package_name.month_cycle, 1)
 
-    '''
-        Month Cal
-    '''
+    try:
+        b = get_object_or_404(Bill, customer=customer)
+        last_activate = BillHistory.objects.filter(bill=b).order_by('-created_at')[:1]
+        last_activate_date = sum([x.total_days for x in last_activate])
+        last_activate_month = round(sum([x.total_days for x in last_activate]) / customer.package_name.month_cycle, 2)
+        next_bill_end_date = b.billing_start_date + timedelta(
+            days=customer.package_name.month_cycle + customer.package_name.month_cycle)
+        current_bill_end_date = b.billing_start_date + timedelta(
+            days=customer.package_name.month_cycle)
+        customer_invoice = Invoice.objects.filter(bill=b).order_by('-custom_bill_date')
+        total_cycle = round(b.total_day / b.customer.package_name.month_cycle, 1)
 
-    months1 = b.invoice_set.filter(custom_bill_date__year=timezone.now().year, custom_bill_date__month=1)
-    months2 = b.invoice_set.filter(custom_bill_date__year=timezone.now().year, custom_bill_date__month=2)
-    months3 = b.invoice_set.filter(custom_bill_date__year=timezone.now().year, custom_bill_date__month=3)
-    months4 = b.invoice_set.filter(custom_bill_date__year=timezone.now().year, custom_bill_date__month=4)
-    months5 = b.invoice_set.filter(custom_bill_date__year=timezone.now().year, custom_bill_date__month=5)
-    months6 = b.invoice_set.filter(custom_bill_date__year=timezone.now().year, custom_bill_date__month=6)
-    months7 = b.invoice_set.filter(custom_bill_date__year=timezone.now().year, custom_bill_date__month=7)
-    months8 = b.invoice_set.filter(custom_bill_date__year=timezone.now().year, custom_bill_date__month=8)
-    months9 = b.invoice_set.filter(custom_bill_date__year=timezone.now().year, custom_bill_date__month=9)
-    months10 = b.invoice_set.filter(custom_bill_date__year=timezone.now().year, custom_bill_date__month=10)
-    months11 = b.invoice_set.filter(custom_bill_date__year=timezone.now().year, custom_bill_date__month=11)
-    months12 = b.invoice_set.filter(custom_bill_date__year=timezone.now().year, custom_bill_date__month=12)
+        '''
+            Month Cal
+        '''
 
-    context = {'customer': customer,
-               'customer_invoice': customer_invoice,
-               'next_bill_end_date': next_bill_end_date,
-               'current_bill_end_date': current_bill_end_date,
-               'total_cycle': total_cycle,
-               'last_activate_date': last_activate_date,
-               'last_activate_month': last_activate_month,
-               'months1': months1,
-               'months2': months2,
-               'months3': months3,
-               'months4': months4,
-               'months5': months5,
-               'months6': months6,
-               'months7': months7,
-               'months8': months8,
-               'months9': months9,
-               'months10': months10,
-               'months11': months11,
-               'months12': months12,
-               }
-    return render(request, 'customers-template/customer_details.html', context)
+        months1 = b.invoice_set.filter(custom_bill_date__year=timezone.now().year, custom_bill_date__month=1)
+        months2 = b.invoice_set.filter(custom_bill_date__year=timezone.now().year, custom_bill_date__month=2)
+        months3 = b.invoice_set.filter(custom_bill_date__year=timezone.now().year, custom_bill_date__month=3)
+        months4 = b.invoice_set.filter(custom_bill_date__year=timezone.now().year, custom_bill_date__month=4)
+        months5 = b.invoice_set.filter(custom_bill_date__year=timezone.now().year, custom_bill_date__month=5)
+        months6 = b.invoice_set.filter(custom_bill_date__year=timezone.now().year, custom_bill_date__month=6)
+        months7 = b.invoice_set.filter(custom_bill_date__year=timezone.now().year, custom_bill_date__month=7)
+        months8 = b.invoice_set.filter(custom_bill_date__year=timezone.now().year, custom_bill_date__month=8)
+        months9 = b.invoice_set.filter(custom_bill_date__year=timezone.now().year, custom_bill_date__month=9)
+        months10 = b.invoice_set.filter(custom_bill_date__year=timezone.now().year, custom_bill_date__month=10)
+        months11 = b.invoice_set.filter(custom_bill_date__year=timezone.now().year, custom_bill_date__month=11)
+        months12 = b.invoice_set.filter(custom_bill_date__year=timezone.now().year, custom_bill_date__month=12)
+
+        context = {'customer': customer,
+                   'customer_invoice': customer_invoice,
+                   'next_bill_end_date': next_bill_end_date,
+                   'current_bill_end_date': current_bill_end_date,
+                   'total_cycle': total_cycle,
+                   'last_activate_date': last_activate_date,
+                   'last_activate_month': last_activate_month,
+                   'months1': months1,
+                   'months2': months2,
+                   'months3': months3,
+                   'months4': months4,
+                   'months5': months5,
+                   'months6': months6,
+                   'months7': months7,
+                   'months8': months8,
+                   'months9': months9,
+                   'months10': months10,
+                   'months11': months11,
+                   'months12': months12,
+                   }
+        return render(request, 'customers-template/customer_details.html', context)
+
+    except Exception as e:
+        msg = messages.warning(request, f"{customer.name} have no bill")
+        return render(request, 'customers-template/customer_no_bill.html', {'msg': msg, 'e': e, 'customer': customer})
 
 
 @permission_required('customer.add_customer')
@@ -153,11 +159,8 @@ def edit_customer(request, slug):
 @permission_required('invoice.can_add')
 @login_required()
 def create_invoices(request, customer_id):
-    from django.utils import timezone
     customer = Customer.objects.get(customer_id=customer_id)
     bill = Bill.objects.get(customer=customer.id)
-    form = CreateInvoiceForm()
-    r = HttpResponseRedirect(reverse('customer:customer_details', args=(customer.slug,)))
 
     if request.method == 'POST':
         form = CreateInvoiceForm(request.POST, request.FILES)
@@ -243,14 +246,44 @@ def create_word(request):
     return render(request, 'customers-template/create_word.html', {'form': form})
 
 
-def create_bill(request):
-    form = CreateBillForm()
-    if request.method == 'POST':
-        form = CreateBillForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Success!!")
+def create_bill(request, slug):
+    customer = Customer.objects.get(slug=slug)
+
+    try:
+
+        bill = Bill.objects.get(pk=customer.id)
+        if request.method == 'POST':
+            form = CreateBillForm(request.POST or None, instance=bill)
+            if form.is_valid():
+                data = form.save()
+                messages.success(request, f"Success!! {data}")
+                return HttpResponseRedirect(reverse('customer:customer_details', args=[str(customer.slug)]))
+
+            else:
+                messages.warning(request, "Failed")
 
         else:
-            messages.warning(request, "Failed")
-    return render(request, 'customers-template/create_bill.html', {'form': form})
+            form = CreateBillForm(instance=bill)
+        return render(request, 'customers-template/create_bill.html', {'form': form, "customer": customer, 'msg': msg})
+
+    except Exception as e:
+        first_time = 'First Time'
+        msg = messages.warning(request,
+                               f"{customer.name} has no bill. You will be submitted bill for first time of her/his")
+        if request.method == 'POST':
+            form = CreateBillForm(request.POST or None)
+            if form.is_valid():
+                data = form.save(commit=False)
+                data.customer = customer
+                data.bill_creator = request.user
+                data.save()
+                messages.success(request, f"Success!! {data}")
+                return HttpResponseRedirect(reverse('customer:customer_details', args=[str(customer.slug)]))
+
+            else:
+                messages.warning(request, "Failed")
+
+        else:
+            form = CreateBillForm()
+        context = {'form': form, "customer": customer, 'first_time': first_time, "msg": msg}
+        return render(request, 'customers-template/create_bill.html', context)

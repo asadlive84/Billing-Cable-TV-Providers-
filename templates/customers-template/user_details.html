@@ -20,7 +20,7 @@
                 <div class="page-header float-right">
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
-                            <li><a href="{% url 'user_list' %}">Customer List</a></li>
+                            <li><a href="{% url 'user_list' %}">User List</a></li>
 
                             <li class="">Profile</li>
                             <li class="active">{{ user.full_name }}</li>
@@ -50,7 +50,7 @@
 
                                                     </h2>
                                                     <p>{{ user.phone_number }}</p>
-                                                    <p>{{ user.last_login }}</p>
+                                                    <p>Last Login {{ user.last_login }}</p>
 
                                                 </div>
                                             </div>
@@ -76,8 +76,77 @@
 
                                 <strong class="card-title">All Invoices</strong>
 
+                            <form class="form-inline" action="" method="post">
+                                {% csrf_token %}
+                                <label for="email"> From: </label>
+                                <input type="text" class="form-control" id="id_custom_bill_date1" placeholder="First Date" name="id_custom_bill_date1" required>
+                                <label for="pwd"> To: </label>
+                                <input type="text" class="form-control" id="id_custom_bill_date2" placeholder="Enter Last date" name="id_custom_bill_date2" required>
+
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+
+
+
                             </div>
+
+
+                        <div class="container">
+                              <div class="card">
+                                    <div class="card-header">
+                                            Invoice
+                                        <strong>{% if from_date %}Showing Date From: {{ from_date }}{% endif %}  {% if to_date %} To: {{ to_date }} {% endif %}</strong>
+{#                                            <span class="float-right"> <strong>Status:</strong> Pending</span>#}
+
+                                    </div>
+
+
+
+
+                            <div class="table-responsive-sm">
+                                <table class="table table-striped">
+
+                                <tbody>
+
+                            </tbody>
+                            </table>
+                            </div>
+                            <div class="row">
+                            <div class="col-lg-4 col-sm-5">
+
+                            </div>
+
+                            <div class="col-lg-4 col-sm-5 mr-auto">
+                                <table class="table table-clear">
+                                    <tbody>
+
+
+
+                                        <tr>
+                                            <td class="left">
+                                            <strong>Collect Total</strong>
+                                            </td>
+                                            <td class="right">
+                                            <strong>{{ total_taka.invoice_amount }} TK</strong>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                            </div>
+
+                            </div>
+                            </div>
+                            </div>
+
+
+
+
                              <div class="card-body">
+
+                             <hr>
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
@@ -97,10 +166,15 @@
                                             <td>
                                                 {{ invoice.bill.customer.phone_number }}
                                             </td>
-                                            <td>{{ invoice.invoice_amount }} - {{ invoice.custom_bill_date|date:'N y' }}</td>
+                                            <td>{{ invoice.invoice_amount }} </td>
                                             <td>
-                                                {{ invoice.created_at|date:"d b,y" }}
-                                                {{ invoice.created_at|time:"h:i A" }}
+                                                {{ invoice.custom_bill_date|date:'d N y ' }}
+                                                <span style="font-size:10px">
+                                                    <i>
+                                                        {{ invoice.created_at|date:"d b,y" }}
+                                                    {{ invoice.created_at|time:"h:i A" }}
+                                                    </i>
+                                                </span>
                                             </td>
                                         </tr>
                                     {% endfor %}

@@ -19,7 +19,6 @@ class CreateCustomerForm(forms.ModelForm):
         model = Customer
         fields = ['name',
                   'package_name',
-                  'customer_status',
                   'gender',
                   'phone_number',
                   'email_field',
@@ -102,9 +101,12 @@ class CreateBillForm(forms.ModelForm):
         model = Bill
         fields = [
             'billing_start_date',
+            'bill_status',
         ]
 
     def __init__(self, *args, **kwargs):
         super(CreateBillForm, self).__init__(*args, **kwargs)
         for visible in self.visible_fields():
             visible.field.widget.attrs['class'] = 'form-control'
+
+

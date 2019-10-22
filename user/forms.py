@@ -2,7 +2,7 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, User
 from django import forms
 from user.models import CustomUser
 import re
-
+from django.contrib.auth.models import Permission
 
 class UserLoginForm(AuthenticationForm):
 
@@ -21,9 +21,10 @@ class UserLoginForm(AuthenticationForm):
 class CustomUserCreationForm(UserCreationForm):
     phone_number = forms.IntegerField(required=True, help_text="Type you phone number BD format 01712123456")
     full_name = forms.CharField(max_length=100, help_text="Type your Full Name")
+
     class Meta:
         model = CustomUser
-        fields = ('full_name', 'phone_number',)
+        fields = ('full_name', 'phone_number', 'username')
 
     # def clean_phone_number(self):
     #     pattern = '(^[01]{1,2})([13456789]{1})(\d{2})(\d{6})$'
@@ -35,3 +36,8 @@ class CustomUserCreationForm(UserCreationForm):
     #     except CustomUser.DoesNotExist:
     #         return phone_number
     #     raise forms.ValidationError(_("A user with that phone number already exists."))
+
+
+
+
+

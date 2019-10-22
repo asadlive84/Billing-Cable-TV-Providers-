@@ -12,7 +12,15 @@ Create Customer
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>Create Word</h1>
+                        <h1>Bill Date:
+                            {% if not customer.bill.billing_start_date %}
+                            {{ first_time }}
+                            {% else %}
+                             Update
+                            {% endif %} For
+                            {{ customer.name }}
+
+                        </h1>
                     </div>
                 </div>
             </div>
@@ -20,9 +28,9 @@ Create Customer
                 <div class="page-header float-right">
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
-                            <li><a href="{%  url 'customer:customer_list' %}">Dashboard</a></li>
+                            <li><a href="{%  url 'customer:customer_list' %}">Customer List</a></li>
 
-                            <li class="active">create word</li>
+                            <li class="active">Bill / <a href="{{ customer.get_absolute_url  }}">{{ customer.name }}</a></li>
                         </ol>
                     </div>
                 </div>
@@ -39,26 +47,28 @@ Create Customer
                             <div class="card-body">
                                 <div class="card">
                                     <div class="card-header">
-                                        <strong>Word Form</strong>
+                                        <strong>Create Billing Staring Date For {{ customer.name }} {{ customer.bill.billing_start_date }}</strong>
+                                        {% if not customer.bill.billing_start_date %}
+                                            <i>First Time</i>
+                                        {% else %}
+                                        <i>Update only</i>
+                                        {% endif %}
                                     </div>
                                     <div class="card-body card-block">
                                         <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                                             {% csrf_token %}
 
-                                            {{ form }}
+
 
                                             <div class="row form-group">
-                                                <div class="col col-md-3"><label for="{{ form.union.id_for_label }}" class="form-control-label">*Union Name</label></div>
-                                                <div class="col-12 col-md-9">{{ form.union }}<small class="form-text text-muted">Union name</small></div>
+                                                <div class="col col-md-3"><label for="{{ form.billing_start_date.id_for_label }}" class="form-control-label">*Billing Start Date</label></div>
+                                                <div class="col-12 col-md-9">{{ form.billing_start_date }}<small class="form-text text-muted">Billing Start Date</small></div>
                                             </div>
                                             <div class="row form-group">
-                                                <div class="col col-md-3"><label for="{{ form.word_name.id_for_label }}" class=" form-control-label">*Word Name</label></div>
-                                                <div class="col-12 col-md-9">{{ form.word_name }}<small class="help-block form-text">word name</small></div>
+                                                <div class="col col-md-3"><label for="{{ form.bill_status.id_for_label }}" class="form-control-label">*Billing Start Date</label></div>
+                                                <div class="col-12 col-md-9">{{ form.bill_status }}<small class="form-text text-muted">Billing Start Date</small></div>
                                             </div>
-                                            <div class="row form-group">
-                                                <div class="col col-md-3"><label for="{{ form.word_number.id_for_label }}" class=" form-control-label">Word Number</label></div>
-                                                <div class="col-12 col-md-9">{{ form.word_number }}<small class="help-block form-text">word number</small></div>
-                                            </div>
+
 
 
 
@@ -68,7 +78,7 @@ Create Customer
 {#                                                </div>#}
 
                                              <button type="submit" class="btn btn-primary btn-sm">
-                                            <i class="fa fa-dot-circle-o"></i> Create Union
+                                            <i class="fa fa-dot-circle-o"></i> Create Bill
                                             </button>
                                         </form>
                                     </div>

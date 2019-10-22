@@ -2,16 +2,40 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ec526eb6-eb14-4760-9b00-2d1e6d72e376" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/customers-template/user_details.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/customers-template/user_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0058_auto_20191022_0107.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0059_auto_20191022_0107.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0060_auto_20191022_0121.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0061_auto_20191022_1951.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0062_auto_20191022_1953.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0063_auto_20191022_2007.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0064_auto_20191022_2036.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0065_auto_20191022_2036.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0058_auto_20191022_0107.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0059_auto_20191022_0107.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0060_auto_20191022_0121.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0061_auto_20191022_1951.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0062_auto_20191022_1953.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0063_auto_20191022_2007.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0064_auto_20191022_2036.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0065_auto_20191022_2036.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/customers-template/customer_no_bill.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/customers-template/permission_setup.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/migrations/0007_auto_20191022_0107.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/migrations/0008_auto_20191022_1951.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DishBilling/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/DishBilling/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bill/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/bill/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/customer/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/customers-template/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/customers-template/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/customers-template/create_customer.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/customers-template/create_customer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/landing-page/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/landing-page/main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/signup.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/customers-template/create_bill.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/customers-template/create_bill.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/customers-template/customer_details.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/customers-template/customer_details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/customers-template/user_details.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/customers-template/user_details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/customers-template/user_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/customers-template/user_list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -136,27 +160,7 @@
     <option name="allServicesViewState">
       <serviceView>
         <treeState>
-          <expand>
-            <path>
-              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@e4783533" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-            </path>
-            <path>
-              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@e4783533" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@78e43bb0" type="9fbbdea:ServiceModel$ServiceNode" />
-            </path>
-            <path>
-              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@e4783533" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@7a527c4e" type="9fbbdea:ServiceModel$ServiceNode" />
-            </path>
-            <path>
-              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@e4783533" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@4484834" type="9fbbdea:ServiceModel$ServiceNode" />
-            </path>
-          </expand>
+          <expand />
           <select />
         </treeState>
       </serviceView>
@@ -201,7 +205,11 @@
       <workItem from="1571466295331" duration="5149000" />
       <workItem from="1571574312341" duration="8170000" />
       <workItem from="1571598314339" duration="13159000" />
-      <workItem from="1571663933382" duration="6647000" />
+      <workItem from="1571663933382" duration="7312000" />
+      <workItem from="1571680764636" duration="9584000" />
+      <workItem from="1571721882529" duration="1053000" />
+      <workItem from="1571732324463" duration="3297000" />
+      <workItem from="1571748024307" duration="9153000" />
     </task>
     <servers />
   </component>
@@ -223,5 +231,15 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/user/forms.py</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

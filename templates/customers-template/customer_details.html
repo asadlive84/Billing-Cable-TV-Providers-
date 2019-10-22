@@ -64,7 +64,7 @@
                                             Customer ID
                                             <strong>{{ customer.customer_id }}</strong>
                                             <span class="float-right"> <strong>Status:</strong> 
-                                            {% if customer.customer_status == '1' %}
+                                            {% if customer.bill.bill_status == '1' %}
                                              <i>from {{ customer.bill.billing_start_date }}</i>
                                             <span class="badge badge-success pull-right"> Active </span>
 
@@ -97,6 +97,7 @@
 
                                                 <div class="col-sm-6">
                                                     <h6 class="mb-3">Connection Info:</h6>
+                                                    <a href="{% url 'customer:create_bill' customer.slug%}">Edit connection Info</a>
                                                     <p>Total Month {{ total_cycle }}</p>
                                                     <div>Connection Start: {{ customer.bill.billing_start_date }}</div>
                                                     <div>Current Bill cycle end : {{ current_bill_end_date }} </div>

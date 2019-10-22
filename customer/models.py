@@ -10,13 +10,7 @@ GENDER_CHOICES = [
     ('F', 'Female'),
 ]
 
-ACTIVE = '1'
-INACTIVE = '0'
 
-CUSTOMER_STATUS = [
-    (INACTIVE, 'Inactive'),
-    (ACTIVE, 'Active'),
-]
 
 
 class Package(models.Model):
@@ -81,7 +75,7 @@ class Customer(models.Model):
     created_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
     name = models.CharField('Customer Name', max_length=200)
     package_name = models.ForeignKey(Package, on_delete=models.SET_NULL, null=True)
-    customer_status = models.CharField('Customer Status', max_length=2, choices=CUSTOMER_STATUS, default=ACTIVE)
+
     slug = models.SlugField(unique=True, blank=True, null=True)
     gender = models.CharField('Gender', choices=GENDER_CHOICES, default='M', max_length=1)
     phone_number = models.IntegerField(db_index=True, unique=True)
@@ -119,6 +113,6 @@ class Customer(models.Model):
         return reverse('customer:customer_details', args=[str(self.slug)])
 
     def save(self, *args, **kwargs):
-        str_white_space_removed=self.name.replace(" ", "").lower()
+        str_white_space_removed = self.name.replace(" ", "").lower()
         self.slug = f"{str_white_space_removed}-{self.customer_id.lower()}"
         super().save(*args, **kwargs)

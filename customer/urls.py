@@ -13,7 +13,7 @@ urlpatterns = [
     path('create_package/', views.create_package, name="create_package"),
     path('create_union/', views.create_union, name="create_union"),
     path('create_word/', views.create_word, name="create_word"),
-    path('create_bill/', views.create_bill, name="create_bill"),
+    path('create_bill/<str:slug>/', views.create_bill, name="create_bill"),
 
 
 
