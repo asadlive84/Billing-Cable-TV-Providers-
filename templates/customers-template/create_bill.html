@@ -12,13 +12,21 @@ Create Customer
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>Bill Date:
+                        <h1>
                             {% if not customer.bill.billing_start_date %}
-                            {{ first_time }}
+                            Create Bill
                             {% else %}
                              Update
                             {% endif %} For
                             {{ customer.name }}
+
+                            {% if customer.bill.bill_status == '0' %}
+                            <span class="badge badge-danger">Deactivate</span>
+                            {% elif customer.bill.bill_status == '1' %}
+                            <span class="badge badge-success">Active</span>
+                            {% else %}
+                            <span class="badge badge-warning">XXX</span>
+                            {% endif %}
 
                         </h1>
                     </div>
@@ -47,7 +55,19 @@ Create Customer
                             <div class="card-body">
                                 <div class="card">
                                     <div class="card-header">
-                                        <strong>Create Billing Staring Date For {{ customer.name }} {{ customer.bill.billing_start_date }}</strong>
+
+                                        {% if customer.bill.bill_status == '0' %}
+                                         <span class="badge badge-success">Start</span> {{ customer.bill.billing_start_date }} <span class="badge badge-danger">Deactivate</span>  {{ customer.bill.connection_date_end }}
+                                        {% elif customer.bill.bill_status == '1' %}
+                                         <span class="badge badge-success">Start</span> {{ customer.bill.billing_start_date }}
+
+                                         {% else %}
+                                         <span class="badge badge-warning">{{ customer.name }} First Time</span>
+                                        {% endif %}
+
+                                    </div>
+                                    <div class="card-header">
+                                        <strong>{{ customer.name }}</strong> {{ customer.phone_number }} ID: {{ customer.customer_id }}
                                         {% if not customer.bill.billing_start_date %}
                                             <i>First Time</i>
                                         {% else %}
@@ -65,7 +85,7 @@ Create Customer
                                                 <div class="col-12 col-md-9">{{ form.billing_start_date }}<small class="form-text text-muted">Billing Start Date</small></div>
                                             </div>
                                             <div class="row form-group">
-                                                <div class="col col-md-3"><label for="{{ form.bill_status.id_for_label }}" class="form-control-label">*Billing Start Date</label></div>
+                                                <div class="col col-md-3"><label for="{{ form.bill_status.id_for_label }}" class="form-control-label">*Status</label></div>
                                                 <div class="col-12 col-md-9">{{ form.bill_status }}<small class="form-text text-muted">Billing Start Date</small></div>
                                             </div>
 
@@ -78,7 +98,7 @@ Create Customer
 {#                                                </div>#}
 
                                              <button type="submit" class="btn btn-primary btn-sm">
-                                            <i class="fa fa-dot-circle-o"></i> Create Bill
+                                            <i class="fa fa-dot-circle-o"></i> Submit
                                             </button>
                                         </form>
                                     </div>

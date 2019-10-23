@@ -13,10 +13,10 @@ Create Customer
                 <div class="page-header float-left">
                     <div class="page-title">
                         <h1>Invoice for <a href="{{ customer.get_absolute_url }}">{{ customer.name }}</a>
-                        {% if not customer.bill.due_bill_status %}
-                        No Due
-                        {% else %}
-                         Due {{customer.bill.due_bill}} TK
+                        {% if customer.bill.bill_status == '0' %}
+                        <span class="badge badge-danger">Deactivate</span>
+                        {% elif customer.bill.bill_status == '1' %}
+                         <span class="badge badge-success">Activate</span>
                         {% endif %}
                         </h1>
 
@@ -28,7 +28,10 @@ Create Customer
                 <div class="page-header float-right">
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
-                            <li class="active"> ID <b>{{ customer.customer_id }}</b> Mobile <b>{{ customer.phone_number }}</b></li>
+                            <li >Dashboard</li>
+                            <li class="active"><a href="{% url 'customer:customer_list' %}">Customer List</a></li>
+                            <li class="active"><a href="{{ customer.get_absolute_url }}">{{ customer.name }}</a></li>
+
                         </ol>
                     </div>
                 </div>
@@ -44,6 +47,15 @@ Create Customer
 
                             <div class="card-body">
                                 <div class="card">
+                                    <div class="card-header">
+                                        {{ customer.name }}  ID <b>{{ customer.customer_id }}</b> Mobile <b>{{ customer.phone_number }}</b>
+                                        {% if not customer.bill.due_bill_status %}
+                                        <span class="badge badge-success">No Due</span>
+                                        {% else %}
+                                         <span class="badge badge-danger">Due</span> {{customer.bill.due_bill}} TK
+                                        {% endif %}
+
+                                    </div>
                                     <div class="card-header">
                                         <strong>Invoice Create Form</strong>
                                     </div>

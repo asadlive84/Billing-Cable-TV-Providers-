@@ -12,7 +12,7 @@ from django.utils import timezone
 
 from bill.models import Invoice, Bill
 from user.models import CustomUser
-from user.forms import CustomUserCreationForm
+from user.forms import CustomUserCreationForm, PermissionRuleForm
 import re
 from django.contrib import messages
 
@@ -72,7 +72,6 @@ def user_list(request):
     return render(request, 'customers-template/user_list.html', {'users': users})
 
 
-@permission_required('user.can_view_self_profile')
 def user_details(request, pk):
     user = get_object_or_404(CustomUser, pk=pk)
     customer_invoice = Invoice.objects.filter(invoice_creator=user)
@@ -101,5 +100,14 @@ def permission_setup(request, pk):
     user = get_object_or_404(CustomUser, pk=pk)
 
     customer_invoice = Invoice.objects.filter(invoice_creator=user)
+
+    if request.method == "POST":
+        form = PermissionRuleForm(request.POST or None, instance=user)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, f"Permission changed!")
+    else:
+        form = PermissionRuleForm(instance=user)
     return render(request, 'customers-template/permission_setup.html',
-                  {'user': user, 'customer_invoice': customer_invoice})
+                  {'user': user, 'form': form})

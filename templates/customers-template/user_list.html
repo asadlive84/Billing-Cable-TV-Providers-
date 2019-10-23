@@ -50,7 +50,8 @@ User List
                                         <tr>
                                          <td>
                                              <a href="{% url 'user_details' user.pk%}">{{ user.full_name }}</a>
-                                             <a href="{% url 'permission_setup' user.pk%}">permission</a>
+                                             <span class="badge badge-success">{{ user.is_active }}</span>
+                                             <span class="badge badge-success">{{ user.get_user_type_display }}</span>
                                          </td>
                                          <td>{{ user.phone_number }}</td>
                                           <td>TK</td>

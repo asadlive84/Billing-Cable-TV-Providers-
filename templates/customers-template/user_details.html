@@ -1,7 +1,7 @@
 {% extends 'customers-template/base.html' %}
 {% load static %}
 {% block title %}
-{{ user.name }} Profile
+{{ user.full_name }} Profile
 {% endblock %}
 {% block content %}
 
@@ -20,7 +20,7 @@
                 <div class="page-header float-right">
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
-                            <li><a href="{% url 'user_list' %}">User List</a></li>
+                            <li><a href="{% url 'user_list' %}">User Panel</a></li>
 
                             <li class="">Profile</li>
                             <li class="active">{{ user.full_name }}</li>
@@ -49,8 +49,12 @@
                                                     <h2 class="text-light display-6">{{ user.full_name }}
 
                                                     </h2>
+                                                    <span class="badge badge-success">{{ user.get_user_type_display }}</span>
+                                                    {% if user.is_superuser %}
+                                                    <h4><span class="badge badge-primary">Superuser</span></h4>
+                                                    {% endif %}
                                                     <p>{{ user.phone_number }}</p>
-                                                    <p>Last Login {{ user.last_login }}</p>
+                                                    <p>Last Login <span class="badge badge-primary">{{ user.last_login }}</span></p>
 
                                                 </div>
                                             </div>
@@ -70,7 +74,21 @@
 
 
 
+                        <div class="card-header">
+                            <a href="{% url 'permission_setup' user.id %}"><span class="badge badge-success">Permission Rule Setup</span></a>
+                            <span class="badge badge-info">{{ user.get_user_type_display }}</span>
+                            {% if user.is_staff %}
+                            <span class="badge badge-primary">Staff</span>
+                            {% else %}
+                            <span class="badge badge-danger">No</span>
+                            {% endif %}
 
+                            {% if user.is_active %}
+                            <span class="badge badge-primary">Active</span>
+                            {% else %}
+                             <span class="badge badge-danger">Inactive</span>
+                            {% endif %}
+                        </div>
 
                         <div class="card-header">
 
@@ -95,7 +113,7 @@
                               <div class="card">
                                     <div class="card-header">
                                             Invoice
-                                        <strong>{% if from_date %}Showing Date From: {{ from_date }}{% endif %}  {% if to_date %} To: {{ to_date }} {% endif %}</strong>
+                                        <strong>{% if from_date %}Showing Date From: <span class="badge badge-warning">{{ from_date }}</span>{% endif %}  {% if to_date %} To: <span class="badge badge-warning">{{ to_date }}</span> {% endif %}</strong>
 {#                                            <span class="float-right"> <strong>Status:</strong> Pending</span>#}
 
                                     </div>

@@ -4,6 +4,7 @@ from user.models import CustomUser
 import re
 from django.contrib.auth.models import Permission
 
+
 class UserLoginForm(AuthenticationForm):
 
     def __init__(self, *args, **kwargs):
@@ -38,6 +39,12 @@ class CustomUserCreationForm(UserCreationForm):
     #     raise forms.ValidationError(_("A user with that phone number already exists."))
 
 
+class PermissionRuleForm(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ('is_staff', 'is_active', 'user_type',)
 
-
-
+    def __init__(self, *args, **kwargs):
+        super(PermissionRuleForm, self).__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control'

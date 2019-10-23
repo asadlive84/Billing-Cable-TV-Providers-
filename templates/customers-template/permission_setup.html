@@ -23,7 +23,7 @@
                             <li><a href="{% url 'user_list' %}">User List</a></li>
 
                             <li class="">Permission</li>
-                            <li class="active">{{ user.full_name }}</li>
+                            <li class="active"><a href="{% url 'user_details' user.id %}">{{ user.full_name }}</a> </li>
                         </ol>
                     </div>
                 </div>
@@ -49,6 +49,10 @@
                                                     <h2 class="text-light display-6">{{ user.full_name }}
 
                                                     </h2>
+                                                    {% if user.is_superuser %}
+                                                    <h4><span class="badge badge-primary">Superuser</span></h4>
+                                                    {% endif %}
+                                                    <span class="badge badge-info">{{ user.get_user_type_display }}</span>
                                                     <p>{{ user.phone_number }}</p>
                                                     <p>Last logged in {{ user.last_login }}</p>
 
@@ -75,10 +79,62 @@
                         <div class="card-header">
 
                                 <strong class="card-title">All Permission List</strong>
+                                <span class="badge badge-success">{{ user.get_user_type_display }}</span>
+                                {% if user.is_staff %}
+                                <span class="badge badge-primary">Staff</span>
+                                {% else %}
+                                <span class="badge badge-danger">No</span>
+                                {% endif %}
 
+                                {% if user.is_active %}
+                                <span class="badge badge-primary">Active</span>
+                                {% else %}
+                                 <span class="badge badge-danger">Inactive</span>
+                                {% endif %}
                             </div>
                              <div class="card-body">
+                                <div class="card-body card-block">
+                                        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                            {% csrf_token %}
 
+
+
+                                            {% if user.is_superuser %}
+
+                                             {% else %}
+
+                                              <div class="row form-group">
+                                                <div class="col col-md-3"><label for="{{ form.is_active.id_for_label }}" class="form-control-label">*Active</label></div>
+                                                <div class="col-0 col-md-pull-11">{{ form.is_active }}<small class="form-text text-muted">Active</small></div>
+                                            </div>
+
+
+                                              <div class="row form-group">
+                                                <div class="col col-md-3"><label for="{{ form.is_staff.id_for_label }}" class="form-control-label">*Is Staff?</label></div>
+                                                <div class="col-0 col-md-pull-10">{{ form.is_staff }}<small class="form-text text-muted">Staff</small></div>
+                                            </div>
+
+
+                                              <div class="row form-group">
+                                                <div class="col col-md-3"><label for="{{ form.user_type.id_for_label }}" class="form-control-label">*User Type</label></div>
+                                                <div class="col-12 col-md-pull-1">{{ form.user_type }}<small class="form-text text-muted">user type</small></div>
+                                            </div>
+                                            {% endif %}
+
+
+
+                                            {% if user.is_superuser %}
+                                            <h2><span class="badge badge-primary">You're are a super user you don't need permission</span></h2>
+                                            {% else %}
+                                            <button type="submit" class="btn btn-primary btn-sm">
+                                            <i class="fa fa-dot-circle-o"></i> Permission Setup
+                                            </button>
+                                            {% endif %}
+
+
+
+                                        </form>
+                                    </div>
                             </div>
                         </div>
                     </div>

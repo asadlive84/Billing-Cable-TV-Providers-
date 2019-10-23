@@ -5,6 +5,14 @@ from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from bill.models import Invoice
 
+PANEL_TYPES = (
+    ('1', 'Admin'),
+    ('2', 'Manager'),
+    ('3', 'Editor'),
+    ('4', 'Worker'),
+    ('5', 'Guest'),
+)
+
 
 class CustomUserManager(UserManager):
     pass
@@ -13,7 +21,9 @@ class CustomUserManager(UserManager):
 class CustomUser(AbstractUser):
     phone_number = models.PositiveIntegerField(unique=True)
     full_name = models.CharField(max_length=100)
-    is_staff = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=False)
+    user_type = models.CharField(max_length=1, choices=PANEL_TYPES, default='5')
 
     USERNAME_FIELD = 'phone_number'
     REQUIRED_FIELDS = ['full_name', ]

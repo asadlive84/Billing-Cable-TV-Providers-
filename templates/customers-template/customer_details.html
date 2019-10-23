@@ -74,6 +74,12 @@
                                             </span>
 
                                         </div>
+
+                                        <div class="card-header">
+                                            <a href="{% url 'customer:create_invoices' customer.customer_id %}"><span class="badge badge-info pull-left">Create Invoice</span></a>
+                                            <a href="{% url 'customer:create_bill' customer.slug %}"><span class="badge badge-primary pull-right">Connection Active / inactive</span></a>
+
+                                        </div>
                                         <div class="card-body">
                                             <div class="row mb-4">
                                                 <div class="col-sm-6">
@@ -100,8 +106,14 @@
                                                     <a href="{% url 'customer:create_bill' customer.slug%}">Edit connection Info</a>
                                                     <p>Total Month {{ total_cycle }}</p>
                                                     <div>Connection Start: {{ customer.bill.billing_start_date }}</div>
+
+                                                    {% if customer.bill.bill_status == '1' %}
                                                     <div>Current Bill cycle end : {{ current_bill_end_date }} </div>
                                                     <div>Next Bill Cycle End Date: {{ next_bill_end_date }}</div>
+                                                    {% else %}
+                                                    Connection End: {{ customer.bill.connection_date_end }}
+                                                    {% endif %}
+
 
 
 

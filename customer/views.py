@@ -246,12 +246,13 @@ def create_word(request):
     return render(request, 'customers-template/create_word.html', {'form': form})
 
 
+@permission_required('bill.view_bill')
 def create_bill(request, slug):
     customer = Customer.objects.get(slug=slug)
 
     try:
 
-        bill = Bill.objects.get(pk=customer.id)
+        bill = Bill.objects.get(customer=customer)
         if request.method == 'POST':
             form = CreateBillForm(request.POST or None, instance=bill)
             if form.is_valid():
@@ -268,8 +269,7 @@ def create_bill(request, slug):
 
     except Exception as e:
         first_time = 'First Time'
-        msg = messages.warning(request,
-                               f"{customer.name} has no bill. You will be submitted bill for first time of her/his")
+
         if request.method == 'POST':
             form = CreateBillForm(request.POST or None)
             if form.is_valid():
@@ -285,5 +285,5 @@ def create_bill(request, slug):
 
         else:
             form = CreateBillForm()
-        context = {'form': form, "customer": customer, 'first_time': first_time, "msg": msg}
+        context = {'form': form, "customer": customer, 'first_time': first_time}
         return render(request, 'customers-template/create_bill.html', context)
