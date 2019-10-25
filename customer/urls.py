@@ -17,5 +17,6 @@ urlpatterns = [
 
 
 
-    path('api/', serializers_view.CustomerListAPI.as_view(), name="customer_list_api")
+    path('api/', serializers_view.CustomerListAPI.as_view(), name="customer_list_api"),
+    path('api/bill/<int:pk>/', serializers_view.CustomerBillAPIView.as_view(), name="bill_list_api"),
 ]

@@ -2,27 +2,42 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ec526eb6-eb14-4760-9b00-2d1e6d72e376" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/bill/migrations/0066_auto_20191023_0230.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bill/migrations/0067_auto_20191023_0234.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bill/migrations/0068_auto_20191023_0313.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/migrations/0066_auto_20191023_0230.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/migrations/0067_auto_20191023_0234.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/migrations/0068_auto_20191023_0313.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/migrations/0009_auto_20191023_0230.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/migrations/0010_auto_20191023_0234.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/migrations/0011_auto_20191023_0313.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0069_auto_20191025_0200.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0070_auto_20191025_0218.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0071_auto_20191025_0319.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0072_auto_20191025_0320.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0073_auto_20191025_0545.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0074_auto_20191025_0547.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0075_auto_20191025_0559.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0076_auto_20191025_0605.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bill/migrations/0077_auto_20191025_1818.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0069_auto_20191025_0200.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0070_auto_20191025_0218.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0071_auto_20191025_0319.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0072_auto_20191025_0320.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0073_auto_20191025_0545.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0074_auto_20191025_0547.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0075_auto_20191025_0559.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0076_auto_20191025_0605.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/migrations/0077_auto_20191025_1818.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/permission_decorator.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/templatetags/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/templatetags/custom_users.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/migrations/0012_auto_20191025_0319.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/migrations/0013_auto_20191025_0320.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/static/images/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/customer/static/images/logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bill/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/bill/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer/serializers_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/serializers_view.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/customer/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/customers-template/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/customers-template/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/customers-template/create_bill.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/customers-template/create_bill.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/customers-template/create_invoice.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/customers-template/create_invoice.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/customers-template/customer_details.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/customers-template/customer_details.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/customers-template/permission_setup.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/customers-template/permission_setup.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/customers-template/customer_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/customers-template/customer_list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/customers-template/user_details.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/customers-template/user_details.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/customers-template/user_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/customers-template/user_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/landing-page/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/landing-page/main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/signup.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/views.py" afterDir="false" />
     </list>
@@ -97,7 +112,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/PycharmProjects/odoo13" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
@@ -201,6 +216,9 @@
       <workItem from="1571767562237" duration="1856000" />
       <workItem from="1571770379583" duration="8951000" />
       <workItem from="1571812463931" duration="2313000" />
+      <workItem from="1571910288441" duration="693000" />
+      <workItem from="1571945806603" duration="16227000" />
+      <workItem from="1572004607555" duration="3267000" />
     </task>
     <servers />
   </component>

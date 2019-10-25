@@ -60,10 +60,11 @@ Customer List
                                                 {% endif %}
                                             </td>
                                             <td>{{ customer.phone_number }}</td>
-                                            <td>{% if customer.bill.due_bill_status %}
+                                            <td>
+                                                {% if customer.bill.due_bill_status %}
                                                 <span style="color: red"> {{ customer.bill.due_bill }}</span>
                                                  {% else %}
-                                                  {{ customer.bill.due_bill }}
+
                                                 {% endif %}
 
                                             </td>

@@ -8,9 +8,8 @@ from bill.models import Invoice
 PANEL_TYPES = (
     ('1', 'Admin'),
     ('2', 'Manager'),
-    ('3', 'Editor'),
-    ('4', 'Worker'),
-    ('5', 'Guest'),
+    ('3', 'Worker'),
+    ('4', 'Guest'),
 )
 
 
@@ -23,7 +22,7 @@ class CustomUser(AbstractUser):
     full_name = models.CharField(max_length=100)
     is_staff = models.BooleanField(default=True)
     is_active = models.BooleanField(default=False)
-    user_type = models.CharField(max_length=1, choices=PANEL_TYPES, default='5')
+    user_type = models.CharField(max_length=1, choices=PANEL_TYPES, default='4')
 
     USERNAME_FIELD = 'phone_number'
     REQUIRED_FIELDS = ['full_name', ]

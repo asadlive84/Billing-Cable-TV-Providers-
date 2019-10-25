@@ -140,14 +140,24 @@
 
 
 
+
                                         <tr>
                                             <td class="left">
-                                            <strong>Collect Total</strong>
+                                            <strong>Collect Total </strong>
+
                                             </td>
                                             <td class="right">
-                                            <strong>{{ total_taka.invoice_amount }} TK</strong>
+                                            <strong>
+                                                {% if total_taka.invoice_amount %}
+                                                    <span class="badge badge-success">{{ total_taka.invoice_amount }}</span>
+                                                {% else %}
+                                                   <span class="badge badge-danger">No</span>
+                                                {% endif %} TK
+                                            </strong>
+                                             {% if from_date %} Date {% endif %}
                                             </td>
                                         </tr>
+
                                     </tbody>
                                 </table>
 

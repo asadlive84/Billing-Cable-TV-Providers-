@@ -9,7 +9,7 @@ from django.urls import reverse
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from django.utils import timezone
-
+from customer.permission_decorator import worker_required, permission_required_permission_rule
 from bill.models import Invoice, Bill
 from user.models import CustomUser
 from user.forms import CustomUserCreationForm, PermissionRuleForm
@@ -66,15 +66,19 @@ def sign_up_form(request):
         return redirect('customer:home')
 
 
-@permission_required('customuser.view_customuser')
+@permission_required_permission_rule()
 def user_list(request):
     users = CustomUser.objects.all()
     return render(request, 'customers-template/user_list.html', {'users': users})
 
 
+@worker_required()
 def user_details(request, pk):
     user = get_object_or_404(CustomUser, pk=pk)
+    self_user = request.user.id
+
     customer_invoice = Invoice.objects.filter(invoice_creator=user)
+    total_taka = customer_invoice.aggregate(invoice_amount=Sum('invoice_amount'))
     if request.method == "POST":
         from_date = request.POST.get('id_custom_bill_date1')
         to_date = request.POST.get('id_custom_bill_date2', timezone.now().date())
@@ -93,13 +97,13 @@ def user_details(request, pk):
         }
         return render(request, 'customers-template/user_details.html', context)
 
-    return render(request, 'customers-template/user_details.html', {'user': user, 'customer_invoice': customer_invoice})
+    return render(request, 'customers-template/user_details.html',
+                  {'user': user, 'customer_invoice': customer_invoice, 'total_taka': total_taka})
 
 
+@permission_required_permission_rule
 def permission_setup(request, pk):
     user = get_object_or_404(CustomUser, pk=pk)
-
-    customer_invoice = Invoice.objects.filter(invoice_creator=user)
 
     if request.method == "POST":
         form = PermissionRuleForm(request.POST or None, instance=user)

@@ -1,7 +1,7 @@
 {% extends 'customers-template/base.html' %}
 
 {% block title %}
-Create Customer
+Bill Date & Status Update
 {% endblock %}
 
 {% block content %}
@@ -110,6 +110,38 @@ Create Customer
                                     </div>
                                 </div>
                             </div>
+                        
+                        
+                            {% if bill.bill_history %}
+                            <div class="card-header">
+
+                             <table class="table table-bordered">
+                                <thead>
+                                  <tr>
+                                    <th>Start - End </th>
+                                    <th>TD</th>
+                                    <th>Bill</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                {% for history in bill.bill_history %}
+                                  <tr>
+                                    <td>{{ history.connection_date_new }} - {% if not history.connection_date_end %}
+                                    Running{% else %} {{ history.connection_date_end }}
+                                    {% endif %}</td>
+                                    <td>{{ history.total_days }}D</td>
+                                    <td>{{ history.user_new_bill }}TK</td>
+                                  </tr>
+                                {% endfor %}
+                                </tbody>
+                              </table>
+
+
+
+
+
+                            </div>
+                            {% endif %}
                         </div>
                     </div>
 

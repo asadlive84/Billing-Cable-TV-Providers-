@@ -21,6 +21,7 @@ from customer.forms import \
     CreateWordForm, \
     CreateBillForm, \
     BillCheckingFrom
+from customer.permission_decorator import create_and_update, worker_required
 
 
 def home_page(request):
@@ -50,14 +51,14 @@ def home_page(request):
     return render(request, 'landing-page/main.html', {'form': form, 'c': c})
 
 
-@permission_required('customer.view_customer')
+@worker_required
 @login_required()
 def customer_list(request):
     customers = Customer.objects.all()
     return render(request, 'customers-template/customer_list.html', {'customers': customers})
 
 
-@permission_required('customer.view_customer')
+@worker_required
 @login_required(redirect_field_name='/')
 def customer_details(request, slug):
     customer = get_object_or_404(Customer, slug=slug)
@@ -119,7 +120,7 @@ def customer_details(request, slug):
         return render(request, 'customers-template/customer_no_bill.html', {'msg': msg, 'e': e, 'customer': customer})
 
 
-@permission_required('customer.add_customer')
+@create_and_update
 @login_required()
 def create_customer(request):
     phone_regex_pattern = '(^[01]{1,2})([13456789]{1})(\d{2})(\d{6})$'
@@ -148,6 +149,7 @@ def create_customer(request):
     return render(request, 'customers-template/create_customer.html', {'forms': forms, })
 
 
+@create_and_update
 @login_required()
 def edit_customer(request, slug):
     customer = get_object_or_404(Customer, slug=slug)
@@ -156,7 +158,7 @@ def edit_customer(request, slug):
     return render(request, 'customers-template/customer_edit.html', {'customer': customer})
 
 
-@permission_required('invoice.can_add')
+@worker_required
 @login_required()
 def create_invoices(request, customer_id):
     customer = Customer.objects.get(customer_id=customer_id)
@@ -196,7 +198,7 @@ def create_invoices(request, customer_id):
     return render(request, 'customers-template/create_invoice.html', {'form': form, 'customer': customer})
 
 
-@permission_required('package.add_package')
+@create_and_update
 @login_required()
 def create_package(request):
     form = CreatePackageForm()
@@ -216,7 +218,7 @@ def create_package(request):
     return render(request, 'customers-template/create_package.html', {'form': form})
 
 
-@permission_required('union.add_union')
+@create_and_update
 @login_required()
 def create_union(request):
     form = CreateUnionForm()
@@ -231,7 +233,7 @@ def create_union(request):
     return render(request, 'customers-template/create_union.html', {'form': form})
 
 
-@permission_required('word.add_word')
+@create_and_update
 @login_required()
 def create_word(request):
     form = CreateWordForm()
@@ -246,6 +248,7 @@ def create_word(request):
     return render(request, 'customers-template/create_word.html', {'form': form})
 
 
+@create_and_update
 @permission_required('bill.view_bill')
 def create_bill(request, slug):
     customer = Customer.objects.get(slug=slug)
@@ -255,29 +258,37 @@ def create_bill(request, slug):
         bill = Bill.objects.get(customer=customer)
         if request.method == 'POST':
             form = CreateBillForm(request.POST or None, instance=bill)
-            if form.is_valid():
-                data = form.save()
-                messages.success(request, f"Success!! {data}")
-                return HttpResponseRedirect(reverse('customer:customer_details', args=[str(customer.slug)]))
+            date = datetime.strptime(form['billing_start_date'].value(), '%Y-%m-%d').date()
+            if int(request.POST.get('bill_status')) != int(bill.bill_status) and \
+                    date > bill.billing_start_date:
 
+                if form.is_valid():
+                    data = form.save()
+                    messages.success(request, f"Success!! You changed {data}")
+                    return HttpResponseRedirect(reverse('customer:customer_details', args=[str(customer.slug)]))
+
+                else:
+                    messages.warning(request, "Failed")
             else:
-                messages.warning(request, "Failed")
+                messages.warning(request, "same issue active or deactivate")
 
         else:
             form = CreateBillForm(instance=bill)
-        return render(request, 'customers-template/create_bill.html', {'form': form, "customer": customer, 'msg': msg})
+        return render(request, 'customers-template/create_bill.html',
+                      {'form': form, "customer": customer, 'bill': bill})
 
     except Exception as e:
         first_time = 'First Time'
 
         if request.method == 'POST':
             form = CreateBillForm(request.POST or None)
+
             if form.is_valid():
                 data = form.save(commit=False)
                 data.customer = customer
                 data.bill_creator = request.user
                 data.save()
-                messages.success(request, f"Success!! {data}")
+                messages.success(request, f"yeah Success!! {data}")
                 return HttpResponseRedirect(reverse('customer:customer_details', args=[str(customer.slug)]))
 
             else:
@@ -285,5 +296,5 @@ def create_bill(request, slug):
 
         else:
             form = CreateBillForm()
-        context = {'form': form, "customer": customer, 'first_time': first_time}
+        context = {'form': form, "customer": customer, 'first_time': first_time, 'bill': bill}
         return render(request, 'customers-template/create_bill.html', context)

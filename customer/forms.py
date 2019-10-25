@@ -40,7 +40,7 @@ class CreateInvoiceForm(forms.ModelForm):
         fields = [
             'invoice_type',
             'invoice_amount',
-            'adjustment',
+            'comment',
             'custom_bill_date',
         ]
 

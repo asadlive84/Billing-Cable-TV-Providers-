@@ -1,5 +1,5 @@
 {% extends 'customers-template/base.html' %}
-
+{% load custom_users %}
 {% block title %}
 User List
 {% endblock %}
@@ -50,11 +50,19 @@ User List
                                         <tr>
                                          <td>
                                              <a href="{% url 'user_details' user.pk%}">{{ user.full_name }}</a>
-                                             <span class="badge badge-success">{{ user.is_active }}</span>
+                                             {% if user.is_staff %}
+                                             <span class="badge badge-success">Staff</span>
+                                              {% else %}
+                                              <span class="badge badge-danger">No Staff</span>
+                                             {% endif %}
                                              <span class="badge badge-success">{{ user.get_user_type_display }}</span>
                                          </td>
                                          <td>{{ user.phone_number }}</td>
-                                          <td>TK</td>
+                                          <td>
+                                              {% if user|total_taka_users %}
+                                              {{ user|total_taka_users }} TK
+                                              {% endif %}
+                                          </td>
                                           <td>{{ user.last_login }}</td>
 
                                         </tr>

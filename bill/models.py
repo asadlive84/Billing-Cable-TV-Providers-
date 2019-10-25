@@ -40,6 +40,7 @@ class BillHistory(models.Model):
 
     class Meta:
         unique_together = ('date_version', 'bill')
+        ordering = ['-date_version']
 
     def __str__(self):
         return f"{self.bill.customer.name} {self.date_version} | {self.connection_date_new}"
@@ -108,13 +109,13 @@ class Bill(models.Model):
 
     def save(self, *args, **kwargs):
         self.balance = self.connection_bill + self.user_bill_paid
-        if not self.billing_start_date:
-            self.billing_start_date = timezone.now().date()
+        # if not self.billing_start_date:
+        #     self.billing_start_date = timezone.now().date()
 
         if self.bill_status == '0':
             self.connection_date_end = timezone.now().date()
-            self.total_day = (self.connection_date_end - self.billing_start_date).days
-        else:
+            self.total_day = (timezone.now().date() - self.billing_start_date).days
+        elif self.bill_status == '1':
             self.connection_date_end = None
             self.total_day = (timezone.now().date() - self.billing_start_date).days
 
