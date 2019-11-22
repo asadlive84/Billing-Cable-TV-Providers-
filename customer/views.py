@@ -296,5 +296,5 @@ def create_bill(request, slug):
 
         else:
             form = CreateBillForm()
-        context = {'form': form, "customer": customer, 'first_time': first_time, 'bill': bill}
+        context = {'form': form, "customer": customer, 'first_time': first_time, 'bill': 'bill'}
         return render(request, 'customers-template/create_bill.html', context)

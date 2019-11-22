@@ -127,7 +127,8 @@ Bill Date & Status Update
                                 {% for history in bill.bill_history %}
                                   <tr>
                                     <td>{{ history.connection_date_new }} - {% if not history.connection_date_end %}
-                                    Running{% else %} {{ history.connection_date_end }}
+                                    <span class="badge badge-success">Running</span>{% else %} {{ history.connection_date_end }}
+                                        <span class="badge badge-danger">End</span>
                                     {% endif %}</td>
                                     <td>{{ history.total_days }}D</td>
                                     <td>{{ history.user_new_bill }}TK</td>

@@ -92,6 +92,7 @@ class Bill(models.Model):
     last_user_has_bill = models.FloatField(default=0, blank=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    celery_update = models.IntegerField(default=1)
 
     def __str__(self):
         return f"{self.customer.name}"

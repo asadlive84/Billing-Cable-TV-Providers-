@@ -1,5 +1,5 @@
 from django.urls import path
-from customer import views
+from customer import views, auto_task
 from customer import serializers_view
 app_name = 'customer'
 
@@ -16,7 +16,7 @@ urlpatterns = [
     path('create_bill/<str:slug>/', views.create_bill, name="create_bill"),
 
 
-
+    path('task/', auto_task.every_hour_work, name='every_hour_work'),
     path('api/', serializers_view.CustomerListAPI.as_view(), name="customer_list_api"),
     path('api/bill/<int:pk>/', serializers_view.CustomerBillAPIView.as_view(), name="bill_list_api"),
 ]
